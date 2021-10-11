@@ -10,6 +10,7 @@ namespace addressbook_testing
         public void TestMethod1()
         {
             //Комментарий1 
+            //Комментарий2 
         }
     }
 }
