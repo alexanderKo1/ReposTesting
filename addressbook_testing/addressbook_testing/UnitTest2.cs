@@ -43,10 +43,13 @@ namespace addressbook_testing
         public void GroupCreationTest()
         {
             OpenHomePage();
-            Login("admin", "secret");
+            Login(new Account("admin", "secret"));
             GoToGoupsPage();
             InitNewGroupCreation();
-            FillGroupForm("1", "2", "3");
+            Group group = new Group("121212");
+            group.Header = "22";
+            group.Footer = "34";
+            FillGroupForm(group);
             SubmitGroupCreation();
             ReturnToGroupsPage();
             Logout();
@@ -57,14 +60,14 @@ namespace addressbook_testing
             driver.Navigate().GoToUrl(baseURL);
         }
 
-        private void Login(string username, string password)
+        private void Login(Account account)
         {
             driver.FindElement(By.Name("user")).Click();
             driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys(username);
+            driver.FindElement(By.Name("user")).SendKeys(account.Username);
             driver.FindElement(By.Name("pass")).Click();
             driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys(password);
+            driver.FindElement(By.Name("pass")).SendKeys(account.Password);
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
         }
 
@@ -78,14 +81,14 @@ namespace addressbook_testing
             driver.FindElement(By.Name("new")).Click();
         }
 
-        private void FillGroupForm(string name, string header, string footer)
+        private void FillGroupForm(Group GroupD)
         {
             driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(name);
+            driver.FindElement(By.Name("group_name")).SendKeys(GroupD.Name);
             driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(header);
+            driver.FindElement(By.Name("group_header")).SendKeys(GroupD.Header);
             driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(footer);
+            driver.FindElement(By.Name("group_footer")).SendKeys(GroupD.Footer);
         }
 
         private void SubmitGroupCreation()
