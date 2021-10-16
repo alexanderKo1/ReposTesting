@@ -10,7 +10,7 @@ using OpenQA.Selenium.Support.UI;
 namespace addressbook_testing
 {
     [TestFixture]
-    public class UntitledTestCase
+    public class GroupCreationTests
     {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
@@ -40,9 +40,25 @@ namespace addressbook_testing
         }
 
         [Test]
-        public void TheUntitledTestCaseTest()
+        public void GroupCreationTest()
         {
+            OpenHomePage();
+            Login();
+            GoToGoupsPage();    
+            InitNewGroupCreation();
+            FillGroupForm();
+            SubmitGroupCreation();
+            ReturnToGroupsPage();
+            Logout();
+        }
+
+        private void OpenHomePage()
+        { 
             driver.Navigate().GoToUrl(baseURL);
+        }
+
+        private void Login()
+        { 
             driver.FindElement(By.Name("user")).Click();
             driver.FindElement(By.Name("user")).Clear();
             driver.FindElement(By.Name("user")).SendKeys("admin");
@@ -50,18 +66,43 @@ namespace addressbook_testing
             driver.FindElement(By.Name("pass")).Clear();
             driver.FindElement(By.Name("pass")).SendKeys("secret");
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
+        }
+
+        private void GoToGoupsPage()
+        { 
             driver.FindElement(By.LinkText("groups")).Click();
+        }
+
+        private void InitNewGroupCreation()
+        { 
             driver.FindElement(By.Name("new")).Click();
+        }
+
+        private void FillGroupForm()
+        { 
             driver.FindElement(By.Name("group_name")).Clear();
             driver.FindElement(By.Name("group_name")).SendKeys("1");
             driver.FindElement(By.Name("group_header")).Clear();
             driver.FindElement(By.Name("group_header")).SendKeys("2");
             driver.FindElement(By.Name("group_footer")).Clear();
             driver.FindElement(By.Name("group_footer")).SendKeys("3");
+        }
+
+        private void SubmitGroupCreation()
+        { 
             driver.FindElement(By.Name("submit")).Click();
+        }
+
+        private void ReturnToGroupsPage()
+        { 
             driver.FindElement(By.LinkText("group page")).Click();
+        }
+
+        private void Logout()
+        { 
             driver.FindElement(By.LinkText("Logout")).Click();
         }
+
         private bool IsElementPresent(By by)
         {
             try
