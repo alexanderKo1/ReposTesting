@@ -4,10 +4,10 @@ using System;
 namespace addressbook_testing
 {
     [TestClass]
-    public class UnitTest1
+    public class Example
     {
         [TestMethod]
-        public void TestMethod1()
+        public void ExampleMethod()
         {
             //Комментарий1 
             //Комментарий2 

@@ -40,7 +40,7 @@ namespace addressbook_testing
         }
 
         [Test]
-        public void TheUntitledTestCaseTest()
+        public void ANewEntryCreationTest()
         {
             OpenHomePage();
             Login(new Account("admin", "secret"));
