@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace addressbook_testing
 {
-    class Group
+    public class Group
     {
         private string name;
         private string header;
