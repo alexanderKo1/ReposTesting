@@ -13,7 +13,7 @@ namespace addressbook_testing
     public class ContactHelper : HelperBase
     {
         public ContactHelper(IWebDriver driver) : base(driver) { }
-        //EntryCreationTest 135
+        //EntryCreationTest
         public void SubmitNewEntry()
         {
             driver.FindElement(By.Name("submit")).Click();
