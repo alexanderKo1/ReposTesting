@@ -12,12 +12,12 @@ namespace addressbook_testing
         [Test]
         public void GroupRemovalTesting()
         {
-            navigationHelper.GoToHomePage();
-            loginHelper.Login(new Account("admin", "secret"));
-            navigationHelper.GoToGroupsPage();
-            groupHelper.SelectGroup(1);
-            groupHelper.RemoveGroup();
-            groupHelper.ReturnToGroupsPage();
+            app.Navigator.GoToHomePage();
+            app.Auth.Login(new Account("admin", "secret"));
+            app.Navigator.GoToGroupsPage();
+            app.Groups.SelectGroup(1);
+            app.Groups.RemoveGroup();
+            app.Groups.ReturnToGroupsPage();
         }
     }
 }
