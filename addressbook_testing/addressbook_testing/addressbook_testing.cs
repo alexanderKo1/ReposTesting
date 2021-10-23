@@ -12,17 +12,17 @@ namespace addressbook_testing
         [Test]
         public void GroupCreationTest()
         {
-            GoToHomePage();
-            Login(new Account("admin", "secret"));
-            GoToGoupsPage();
-            InitNewGroupCreation();
+            navigationHelper.GoToHomePage();
+            loginHelper.Login(new Account("admin", "secret"));
+            navigationHelper.GoToGroupsPage();
+            groupHelper.InitNewGroupCreation();
             Group group = new Group("121212");
             group.Header = "22";
             group.Footer = "34";
-            FillGroupForm(group);
-            SubmitGroupCreation();
-            ReturnToGroupsPage();
-            Logout();
+            groupHelper.FillGroupForm(group);
+            groupHelper.SubmitGroupCreation();
+            groupHelper.ReturnToGroupsPage();
+            loginHelper.Logout();
         }
     }
 }

@@ -12,13 +12,13 @@ namespace addressbook_testing
         [Test]
         public void ANewEntryCreationTest()
         {
-            GoToHomePage();
-            Login(new Account("admin", "secret"));
-            InitNewEntryCreation();
+            navigationHelper.GoToHomePage();
+            loginHelper.Login(new Account("admin", "secret"));
+            navigationHelper.InitNewEntryCreation();
             EntryData entryData = new EntryData("Ivan", "Sergeev");
-            NewEntry(entryData);
-            SubmitNewEntry();
-            BackToHomePage();
+            contactHelper.NewEntry(entryData);
+            contactHelper.SubmitNewEntry();
+            contactHelper.BackToHomePage();
 
         }
     }
