@@ -21,13 +21,25 @@ namespace addressbook_testing
             InitNewGroupCreation();
             FillGroupForm(group);
             SubmitGroupCreation();
-            ReturnToGroupsPage(); ;
+            ReturnToGroupsPage();
             return this;
         }
+
+        public GroupHelper Modify(int v, Group newData)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(v);
+            InitGroupModification();
+            FillGroupForm(newData);
+            SubmitGroupModification();
+            ReturnToGroupsPage();
+            return this;
+        }
+
         public GroupHelper Remove(int index)
         {
             manager.Navigator.GoToGroupsPage();
-            SelectGroup(1);
+            SelectGroup(index);
             RemoveGroup();
             ReturnToGroupsPage();
             return this;
@@ -68,6 +80,16 @@ namespace addressbook_testing
         public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
+            return this;
+        }
+        public GroupHelper SubmitGroupModification()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+        public GroupHelper InitGroupModification()
+        {
+            driver.FindElement(By.Name("edit")).Click();
             return this;
         }
     }
