@@ -14,6 +14,27 @@ namespace addressbook_testing
     {
         public ContactHelper(ApplicationManagerA manager) : base(manager) { }
 
+        public ContactHelper Modify(int v, EntryData entryData)
+        {
+            Modify(v);
+            NewEntry(entryData);
+            Update();
+            BackToHomePage();
+            return this;
+        }
+
+        public ContactHelper Update()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+
+        public ContactHelper Modify(int v)
+        {
+            driver.FindElement(By.CssSelector("table#maintable tr:nth-child(" + v + ") td.center img[title='Edit']")).Click();
+            return this;
+        }
+
         public ContactHelper Remove(int index)
         {
             SelectContact(index);
@@ -56,8 +77,10 @@ namespace addressbook_testing
         public ContactHelper NewEntry(EntryData ed)
         {
             driver.FindElement(By.Name("firstname")).Click();
+            driver.FindElement(By.Name("firstname")).Clear();
             driver.FindElement(By.Name("firstname")).SendKeys(ed.FirstName);
             driver.FindElement(By.Name("lastname")).Click();
+            driver.FindElement(By.Name("lastname")).Clear();
             driver.FindElement(By.Name("lastname")).SendKeys(ed.LastName);
             return this;
         }

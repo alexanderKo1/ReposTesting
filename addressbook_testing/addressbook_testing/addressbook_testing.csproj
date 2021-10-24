@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="fTests\ContactModificationTests.cs" />
     <Compile Include="fTests\ContactRemovalTests.cs" />
     <Compile Include="fModel\Account.cs" />
     <Compile Include="fAppmanager\ApplicationManagerA.cs" />
