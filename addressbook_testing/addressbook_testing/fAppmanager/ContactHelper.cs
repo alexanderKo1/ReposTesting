@@ -30,7 +30,7 @@ namespace addressbook_testing
 
         public ContactHelper SelectContact(int index)
         {
-            driver.FindElement(By.XPath("//input[@id=" + index + "]")).Click();
+            driver.FindElement(By.XPath("//table[@id='maintable']//input[@id=" + index + "]")).Click();
             return this;
         }
 

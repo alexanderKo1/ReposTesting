@@ -13,7 +13,7 @@ namespace addressbook_testing
         public void ContactRemovalTest()
         {
             //Предварительно посмотреть ID контакта в addressbook на UI
-            app.Contacts.Remove(5); 
+            app.Contacts.Remove(30); 
         }
     }
 }
