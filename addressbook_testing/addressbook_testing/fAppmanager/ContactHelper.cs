@@ -16,6 +16,7 @@ namespace addressbook_testing
         //EntryCreationTest
         public ContactHelper Create(EntryData entryData)
         {
+            manager.Navigator.InitNewEntryCreation();
             NewEntry(entryData);
             SubmitNewEntry();
             BackToHomePage();
