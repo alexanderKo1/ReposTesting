@@ -12,8 +12,6 @@ namespace addressbook_testing
         [Test]
         public void ANewEntryCreationTest()
         {
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(new Account("admin", "secret"));
             app.Navigator.InitNewEntryCreation();
             EntryData entryData = new EntryData("Ivan", "Sergeev");
             app.Contacts.NewEntry(entryData)

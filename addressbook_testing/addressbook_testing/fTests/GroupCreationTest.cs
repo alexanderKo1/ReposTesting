@@ -12,14 +12,22 @@ namespace addressbook_testing
         [Test]
         public void GroupCreationTest()
         {
-            app.Navigator.GoToGroupsPage();
             Group group = new Group("121212");
             group.Header = "22";
             group.Footer = "34";
-            app.Groups.InitNewGroupCreation()
-                .FillGroupForm(group)
-                .SubmitGroupCreation()
-                .ReturnToGroupsPage();
+
+            app.Groups.Create(group);
+            //app.Auth.Logout();
+        }
+
+        [Test]
+        public void EmptyGroupCreationTest()
+        {
+            Group group = new Group("");
+            group.Header = "";
+            group.Footer = "";
+
+            app.Groups.Create(group);
             //app.Auth.Logout();
         }
     }

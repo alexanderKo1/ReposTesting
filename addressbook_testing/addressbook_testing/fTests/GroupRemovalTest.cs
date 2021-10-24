@@ -12,8 +12,6 @@ namespace addressbook_testing
         [Test]
         public void GroupRemovalTesting()
         {
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(new Account("admin", "secret"));
             app.Navigator.GoToGroupsPage();
             app.Groups.SelectGroup(1)
                 .RemoveGroup()
