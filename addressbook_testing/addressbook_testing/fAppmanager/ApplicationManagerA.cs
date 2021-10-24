@@ -13,7 +13,6 @@ namespace addressbook_testing
     public class ApplicationManagerA
     {
         protected IWebDriver driver;
-        private StringBuilder verificationErrors;
         protected string baseURL;
 
         protected LoginHelper loginHelper;
@@ -25,7 +24,6 @@ namespace addressbook_testing
         {
             driver = new FirefoxDriver();
             baseURL = "http://localhost/addressbook";
-            verificationErrors = new StringBuilder();
 
             loginHelper = new LoginHelper(this);
             navigationHelper = new NavigationHelper(this, baseURL);
