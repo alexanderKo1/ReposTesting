@@ -35,10 +35,17 @@ namespace addressbook_testing
             return this;
         }
 
-        public ContactHelper Remove(int index)
+        public ContactHelper Remove(int ind)
         {
-            SelectContact(index);
+            //SelectContactByID(ind);
+            SelectContactByIndex(ind);
             RemoveCantact();
+            return this;
+        }
+
+        public ContactHelper SelectContactByIndex(int ind)
+        {
+            driver.FindElement(By.CssSelector("table#maintable tr:nth-child(" + ind + ") td.center input[type='checkbox']")).Click();
             return this;
         }
 
@@ -49,7 +56,7 @@ namespace addressbook_testing
             return this;
         }
 
-        public ContactHelper SelectContact(int index)
+        public ContactHelper SelectContactByID(int index)
         {
             driver.FindElement(By.XPath("//table[@id='maintable']//input[@id=" + index + "]")).Click();
             return this;
