@@ -17,17 +17,20 @@ namespace addressbook_testing
         {
             this.baseURL = baseURL;
         }
-        public void GoToHomePage()
+        public NavigationHelper GoToHomePage()
         {
             driver.Navigate().GoToUrl(baseURL);
+            return this;
         }
-        public void GoToGroupsPage()
+        public NavigationHelper GoToGroupsPage()
         {
             driver.FindElement(By.LinkText("groups")).Click();
+            return this;
         }
-        public void InitNewEntryCreation()
+        public NavigationHelper InitNewEntryCreation()
         {
             driver.FindElement(By.LinkText("add new")).Click();
+            return this;
         }
     }
 }

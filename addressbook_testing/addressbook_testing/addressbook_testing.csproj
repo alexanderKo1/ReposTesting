@@ -65,7 +65,6 @@
     <Compile Include="fAppmanager\ContactHelper.cs" />
     <Compile Include="fModel\EntryData.cs" />
     <Compile Include="fModel\Group.cs" />
-    <Compile Include="fTests\Example.cs" />
     <Compile Include="fAppmanager\GroupHelper.cs" />
     <Compile Include="fTests\GroupRemovalTest.cs" />
     <Compile Include="fAppmanager\HelperBase.cs" />

@@ -14,20 +14,23 @@ namespace addressbook_testing
     {
         public ContactHelper(IWebDriver driver) : base(driver) { }
         //EntryCreationTest
-        public void SubmitNewEntry()
+        public ContactHelper SubmitNewEntry()
         {
             driver.FindElement(By.Name("submit")).Click();
+            return this;
         }
-        public void BackToHomePage()
+        public ContactHelper BackToHomePage()
         {
             driver.FindElement(By.LinkText("home page")).Click();
+            return this;
         }
-        public void NewEntry(EntryData ed)
+        public ContactHelper NewEntry(EntryData ed)
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).SendKeys(ed.FirstName);
             driver.FindElement(By.Name("lastname")).Click();
             driver.FindElement(By.Name("lastname")).SendKeys(ed.LastName);
+            return this;
         }
     }
 }

@@ -16,9 +16,9 @@ namespace addressbook_testing
             app.Auth.Login(new Account("admin", "secret"));
             app.Navigator.InitNewEntryCreation();
             EntryData entryData = new EntryData("Ivan", "Sergeev");
-            app.Contacts.NewEntry(entryData);
-            app.Contacts.SubmitNewEntry();
-            app.Contacts.BackToHomePage();
+            app.Contacts.NewEntry(entryData)
+                .SubmitNewEntry()
+                .BackToHomePage();
 
         }
     }
