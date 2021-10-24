@@ -13,6 +13,27 @@ namespace addressbook_testing
     public class ContactHelper : HelperBase
     {
         public ContactHelper(ApplicationManagerA manager) : base(manager) { }
+
+        public ContactHelper Remove(int index)
+        {
+            SelectContact(index);
+            RemoveCantact();
+            return this;
+        }
+
+        public ContactHelper RemoveCantact()
+        {
+            driver.FindElement(By.XPath("//div[@class='left']//input[@value='Delete']")).Click();
+            driver.SwitchTo().Alert().Accept();
+            return this;
+        }
+
+        public ContactHelper SelectContact(int index)
+        {
+            driver.FindElement(By.XPath("//input[@id=" + index + "]")).Click();
+            return this;
+        }
+
         //EntryCreationTest
         public ContactHelper Create(EntryData entryData)
         {

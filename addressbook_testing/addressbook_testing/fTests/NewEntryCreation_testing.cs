@@ -12,7 +12,7 @@ namespace addressbook_testing
         [Test]
         public void ANewEntryCreationTest()
         {
-            EntryData entryData = new EntryData("Ivan", "Sergeev");
+            EntryData entryData = new EntryData("Nicolaz", "Cage");
             app.Contacts.Create(entryData);
         }
     }
