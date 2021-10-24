@@ -12,7 +12,7 @@ namespace addressbook_testing
 {
     public class LoginHelper : HelperBase
     {
-        public LoginHelper(IWebDriver driver) : base(driver) {}
+        public LoginHelper(ApplicationManagerA manager) : base(manager) {}
         public LoginHelper Login(Account account)
         {
             driver.FindElement(By.Name("user")).Click();

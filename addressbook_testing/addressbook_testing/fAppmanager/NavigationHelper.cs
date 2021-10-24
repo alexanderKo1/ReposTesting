@@ -13,7 +13,7 @@ namespace addressbook_testing
     public class NavigationHelper : HelperBase
     {
         protected string baseURL;
-        public NavigationHelper(IWebDriver driver, string baseURL) : base(driver)
+        public NavigationHelper(ApplicationManagerA manager, string baseURL) : base(manager)
         {
             this.baseURL = baseURL;
         }

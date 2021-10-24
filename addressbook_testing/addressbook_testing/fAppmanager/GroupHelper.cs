@@ -13,8 +13,17 @@ namespace addressbook_testing
     public class GroupHelper : HelperBase
     {
 
-        public GroupHelper(IWebDriver driver) : base(driver) { }
+        public GroupHelper(ApplicationManagerA manager) : base(manager) { }
         //GroupRemovalTests
+        public GroupHelper Create(Group group)
+        {
+            manager.Navigator.GoToGroupsPage();
+            InitNewGroupCreation();
+            FillGroupForm(group);
+            SubmitGroupCreation();
+            ReturnToGroupsPage(); ;
+            return this;
+        }
         public GroupHelper ReturnToGroupsPage()
         {
             driver.FindElement(By.LinkText("group page")).Click();

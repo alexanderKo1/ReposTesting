@@ -12,8 +12,15 @@ namespace addressbook_testing
 {
     public class ContactHelper : HelperBase
     {
-        public ContactHelper(IWebDriver driver) : base(driver) { }
+        public ContactHelper(ApplicationManagerA manager) : base(manager) { }
         //EntryCreationTest
+        public ContactHelper Create(EntryData entryData)
+        {
+            NewEntry(entryData);
+            SubmitNewEntry();
+            BackToHomePage();
+            return this;
+        }
         public ContactHelper SubmitNewEntry()
         {
             driver.FindElement(By.Name("submit")).Click();

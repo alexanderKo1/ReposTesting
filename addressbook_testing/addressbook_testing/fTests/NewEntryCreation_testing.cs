@@ -14,10 +14,7 @@ namespace addressbook_testing
         {
             app.Navigator.InitNewEntryCreation();
             EntryData entryData = new EntryData("Ivan", "Sergeev");
-            app.Contacts.NewEntry(entryData)
-                .SubmitNewEntry()
-                .BackToHomePage();
-
+            app.Contacts.Create(entryData);
         }
     }
 }

@@ -16,11 +16,7 @@ namespace addressbook_testing
             group.Header = "22";
             group.Footer = "34";
 
-            app.Navigator.GoToGroupsPage();
-            app.Groups.InitNewGroupCreation()
-                .FillGroupForm(group)
-                .SubmitGroupCreation()
-                .ReturnToGroupsPage();
+            app.Groups.Create(group);
             //app.Auth.Logout();
         }
         [Test]
@@ -30,11 +26,7 @@ namespace addressbook_testing
             group.Header = "";
             group.Footer = "";
 
-            app.Navigator.GoToGroupsPage();
-            app.Groups.InitNewGroupCreation()
-                .FillGroupForm(group)
-                .SubmitGroupCreation()
-                .ReturnToGroupsPage();
+            app.Groups.Create(group);
         }
     }
 }
