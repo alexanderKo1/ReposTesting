@@ -24,6 +24,14 @@ namespace addressbook_testing
             ReturnToGroupsPage(); ;
             return this;
         }
+        public GroupHelper Remove(int index)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(1);
+            RemoveGroup();
+            ReturnToGroupsPage();
+            return this;
+        }
         public GroupHelper ReturnToGroupsPage()
         {
             driver.FindElement(By.LinkText("group page")).Click();
