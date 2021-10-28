@@ -10,11 +10,11 @@ namespace addressbook_testing
     class ContactModificationTests : TestBase
     {
         [Test]
-        public void ContactModificationTest() //Тест модификации контакта
+        public void ContactModificationTest() //Тест модификации контакта 
         {
-            EntryData entryData = new EntryData("Миша", "Ивановский");
+            EntryData entryData = new EntryData("Фёдор2", "Владимирв2");
 
-            app.Contacts.Modify(3, entryData);
+            app.Contacts.Modify(13, entryData);
         }
     }
 }
