@@ -14,7 +14,7 @@ namespace addressbook_testing
     {
         public ContactHelper(ApplicationManagerA manager) : base(manager) { }
 
-        public ContactHelper Modify(int v, EntryData entryData)
+        public ContactHelper Modify(int v, EntryData entryData) //Метод модификации контакта
         {
             Modify(v);
             NewEntry(entryData);
@@ -35,7 +35,7 @@ namespace addressbook_testing
             return this;
         }
 
-        public ContactHelper Remove(int ind)
+        public ContactHelper Remove(int ind) //Метод удаления контакта
         {
             //SelectContactByID(ind);
             SelectContactByIndex(ind);

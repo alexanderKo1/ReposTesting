@@ -10,7 +10,7 @@ namespace addressbook_testing
     class ContactModificationTests : TestBase
     {
         [Test]
-        public void ContactModificationTest()
+        public void ContactModificationTest() //Тест модификации контакта
         {
             EntryData entryData = new EntryData("Миша", "Ивановский");
 

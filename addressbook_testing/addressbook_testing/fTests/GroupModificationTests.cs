@@ -11,13 +11,13 @@ namespace addressbook_testing
     class GroupModificationTests : TestBase
     {
         [Test]
-        public void GroupModificationTest()
+        public void GroupModificationTest() //Тест модификации группы
         {
             Group newData = new Group("A");
             newData.Header = "B";
             newData.Footer = "C";
 
-            app.Groups.Modify(1, newData);
+            app.Groups.Modify(1, newData); 
         }
     }
 }

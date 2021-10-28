@@ -25,7 +25,7 @@ namespace addressbook_testing
             return this;
         }
 
-        public GroupHelper Modify(int v, Group newData)
+        public GroupHelper Modify(int v, Group newData) //Метод модификации группы
         {
             manager.Navigator.GoToGroupsPage();
             SelectGroup(v);
