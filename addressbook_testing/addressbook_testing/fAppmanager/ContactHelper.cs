@@ -37,10 +37,18 @@ namespace addressbook_testing
 
         public ContactHelper Remove(int ind) //Метод удаления контакта
         {
+            if (! IsCreated())
+            {
+                Create(new EntryData("TestA", "TestB"));
+            }
             //SelectContactByID(ind);
             SelectContactByIndex(ind);
             RemoveCantact();
             return this;
+        }
+        public bool IsCreated()
+        {
+            return IsElementPresent(By.CssSelector("table#maintable tr:nth-child(2) td.center input[type='checkbox']"));
         }
 
         public ContactHelper SelectContactByIndex(int ind)
