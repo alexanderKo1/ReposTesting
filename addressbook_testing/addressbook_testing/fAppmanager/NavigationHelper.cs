@@ -43,6 +43,10 @@ namespace addressbook_testing
             driver.Navigate().GoToUrl(baseURL + "/addressbook/");
             driver.FindElement(By.LinkText("add new")).Click();
         }
+        public void Waiter(int time)
+        {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(time);
+        }
     }
 }
 

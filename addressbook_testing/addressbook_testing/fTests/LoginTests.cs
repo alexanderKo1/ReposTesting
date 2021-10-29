@@ -32,7 +32,9 @@ namespace addressbook_testing
 
             //Действие
             Account accountInv = new Account("11", "12");
+            app.Navigator.Waiter(2);
             app.Auth.Login(accountInv);
+            app.Navigator.Waiter(0);
 
             //Проверка
             Assert.IsFalse(app.Auth.IsLoggedIn(accountInv));
