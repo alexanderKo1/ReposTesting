@@ -14,16 +14,7 @@ namespace addressbook_testing
         [SetUp]
         public void SetupTest()
         {
-            app = new ApplicationManagerA();
-
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(new Account("admin", "secret"));
-        }
-
-        [TearDown]
-        public void TeardownTest()
-        {
-            app.Stop();
+            app = TestSuiteFixture.app;
         }
     }
 }
