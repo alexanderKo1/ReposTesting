@@ -27,7 +27,7 @@ namespace addressbook_testing
         [Test]
         public void LoginWithInvalidCredentials()
         {
-            //подготовка
+            //подготовка 
             app.Auth.Logout();
 
             //Действие
