@@ -67,16 +67,23 @@ namespace addressbook_testing
             driver.FindElement(By.Name("new")).Click();
             return this;
         }
-        public GroupHelper FillGroupForm(Group GroupD)
+        public GroupHelper FillGroupForm(Group groupD)
         {
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(GroupD.Name);
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(GroupD.Header);
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(GroupD.Footer);
+            Type(By.Name("group_name"), groupD.Name);
+            Type(By.Name("group_header"), groupD.Header);
+            Type(By.Name("group_footer"), groupD.Footer);
             return this;
         }
+
+        public void Type(By locator, string text)
+        {
+            if (text != null)
+            {
+                driver.FindElement(locator).Clear();
+                driver.FindElement(locator).SendKeys(text);
+            }
+        }
+
         public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.Name("submit")).Click();

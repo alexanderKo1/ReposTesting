@@ -14,8 +14,8 @@ namespace addressbook_testing
         public void GroupModificationTest() //Тест модификации группы
         {
             Group newData = new Group("A");
-            newData.Header = "B";
-            newData.Footer = "C";
+            newData.Header = null;
+            newData.Footer = null;
 
             app.Groups.Modify(1, newData); 
         }
