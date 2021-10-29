@@ -20,7 +20,9 @@ namespace addressbook_testing
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
 
-        public ApplicationManagerA()
+        private static ApplicationManagerA instance;
+
+        private ApplicationManagerA()
         {
             driver = new FirefoxDriver();
             baseURL = "http://localhost/addressbook";
@@ -31,6 +33,14 @@ namespace addressbook_testing
             contactHelper = new ContactHelper(this);
         }
 
+        public static ApplicationManagerA GetInstance()
+        { 
+            if (instance == null) //Если объект не создан, то создать. Если создан - то исп. существующий
+            {
+                instance = new ApplicationManagerA();
+            }
+            return instance;
+        }
         public void Stop()
         {
             try
