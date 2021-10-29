@@ -28,10 +28,7 @@ namespace addressbook_testing
         public GroupHelper Modify(int v, Group newData) //Метод модификации группы
         {
             manager.Navigator.GoToGroupsPage();
-            if (!IsCreated())
-            {
-                Create(new Group("groupTestA", "groupTestB"));
-            }
+            GroupCreationCondition();
             SelectGroup(v);
             InitGroupModification();
             FillGroupForm(newData);
@@ -43,14 +40,18 @@ namespace addressbook_testing
         public GroupHelper Remove(int index)
         {
             manager.Navigator.GoToGroupsPage();
-            if (!IsCreated())
-            {
-                Create(new Group("groupTestA", "groupTestB"));
-            }
+            GroupCreationCondition();
             SelectGroup(index);
             RemoveGroup();
             ReturnToGroupsPage();
             return this;
+        }
+        public void GroupCreationCondition() //Условие в методе
+        {
+            if (!IsCreated())
+            {
+                Create(new Group("groupTestA", "groupTestB"));
+            }
         }
         public bool IsCreated()
         {

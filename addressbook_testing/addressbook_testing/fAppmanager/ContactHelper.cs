@@ -16,15 +16,19 @@ namespace addressbook_testing
 
         public ContactHelper Modify(int v, EntryData entryData) //Метод модификации контакта
         {
-            if (!IsCreated())
-            {
-                Create(new EntryData("TestA", "TestB"));
-            }
+            ContactCreationCondition();
             Modify(v);
             NewEntry(entryData);
             Update();
             BackToHomePage();
             return this;
+        }
+        public void ContactCreationCondition()
+        {
+            if (!IsCreated())
+            {
+                Create(new EntryData("TestA", "TestB"));
+            }
         }
 
         public ContactHelper Update()
@@ -41,10 +45,7 @@ namespace addressbook_testing
 
         public ContactHelper Remove(int ind) //Метод удаления контакта
         {
-            if (! IsCreated())
-            {
-                Create(new EntryData("TestA", "TestB"));
-            }
+            ContactCreationCondition();
             //SelectContactByID(ind);
             SelectContactByIndex(ind);
             RemoveCantact();
