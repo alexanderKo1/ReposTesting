@@ -32,13 +32,15 @@ namespace addressbook_testing
         {
             if (IsLoggedIn())
             {
-                driver.FindElement(By.LinkText("Logout")).Click();
+                driver.FindElement(By.CssSelector("form[name='logout'] a[href='#']")).Click();
+                //"form[name='logout'] a[href='#']" -=- driver.FindElement(By.LinkText("Logout")).Click();
             }
 
         }
         public bool IsLoggedIn()
         {
-            return IsElementPresent(By.Name("logout"));
+            return IsElementPresent(By.CssSelector("form[name='logout'] a[href='#']"));
+            //By.Name("logout")
         }
         public bool IsLoggedIn(Account account)
         {
