@@ -34,10 +34,14 @@ namespace addressbook_testing
             }
             driver.FindElement(By.LinkText("groups")).Click();
         }
-        public NavigationHelper InitNewEntryCreation()
+        public void InitNewEntryCreation()
         {
+            //if (IsElementPresent(By.LinkText("add new")))
+            //{
+            //    driver.FindElement(By.LinkText("add new")).Click();
+            //}
+            driver.Navigate().GoToUrl(baseURL + "/addressbook/");
             driver.FindElement(By.LinkText("add new")).Click();
-            return this;
         }
     }
 }

@@ -31,11 +31,11 @@ namespace addressbook_testing
             app.Auth.Logout();
 
             //Действие
-            Account account = new Account("11", "12");
-            app.Auth.Login(account);
+            Account accountInv = new Account("11", "12");
+            app.Auth.Login(accountInv);
 
             //Проверка
-            Assert.IsFalse(app.Auth.IsLoggedIn(account));
+            Assert.IsFalse(app.Auth.IsLoggedIn(accountInv));
         }
     }
 }

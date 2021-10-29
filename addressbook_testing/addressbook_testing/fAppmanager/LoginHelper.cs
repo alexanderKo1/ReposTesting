@@ -30,6 +30,7 @@ namespace addressbook_testing
         }
         public void Logout()
         {
+            manager.Navigator.GoToHomePage();
             if (IsLoggedIn())
             {
                 driver.FindElement(By.CssSelector("form[name='logout'] a[href='#']")).Click();
