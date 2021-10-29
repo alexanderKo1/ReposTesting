@@ -12,10 +12,10 @@ namespace addressbook_testing
         [Test]
         public void ContactModificationTest() //Тест модификации контакта 
         {
-            EntryData entryData = new EntryData("Johny");
-            entryData.LastName = "Travoltas";
+            EntryData entryData = new EntryData("1");
+            entryData.LastName = "2";
 
-            app.Contacts.Modify(13, entryData);
+            app.Contacts.Modify(2, entryData);
         }
     }
 }

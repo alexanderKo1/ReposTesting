@@ -16,6 +16,10 @@ namespace addressbook_testing
 
         public ContactHelper Modify(int v, EntryData entryData) //Метод модификации контакта
         {
+            if (!IsCreated())
+            {
+                Create(new EntryData("TestA", "TestB"));
+            }
             Modify(v);
             NewEntry(entryData);
             Update();

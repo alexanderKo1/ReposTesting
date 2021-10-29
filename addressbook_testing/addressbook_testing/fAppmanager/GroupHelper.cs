@@ -28,6 +28,10 @@ namespace addressbook_testing
         public GroupHelper Modify(int v, Group newData) //Метод модификации группы
         {
             manager.Navigator.GoToGroupsPage();
+            if (!IsCreated())
+            {
+                Create(new Group("groupTestA", "groupTestB"));
+            }
             SelectGroup(v);
             InitGroupModification();
             FillGroupForm(newData);
@@ -39,10 +43,18 @@ namespace addressbook_testing
         public GroupHelper Remove(int index)
         {
             manager.Navigator.GoToGroupsPage();
+            if (!IsCreated())
+            {
+                Create(new Group("groupTestA", "groupTestB"));
+            }
             SelectGroup(index);
             RemoveGroup();
             ReturnToGroupsPage();
             return this;
+        }
+        public bool IsCreated()
+        {
+            return IsElementPresent(By.XPath("//div[@id='content']/form/span[1]/input"));
         }
         public GroupHelper ReturnToGroupsPage()
         {
