@@ -74,6 +74,7 @@
     <Compile Include="fAppmanager\LoginHelper.cs" />
     <Compile Include="fAppmanager\NavigationHelper.cs" />
     <Compile Include="fTests\GroupModificationTests.cs" />
+    <Compile Include="fTests\LoginTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="fTests\GroupCreationTests.cs" />
     <Compile Include="fTests\NewEntryCreationTests.cs" />
