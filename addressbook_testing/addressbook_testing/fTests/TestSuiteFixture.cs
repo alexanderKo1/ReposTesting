@@ -17,11 +17,5 @@ namespace addressbook_testing
             app.Navigator.GoToHomePage();
             app.Auth.Login(new Account("admin", "secret"));
         }
-
-        [TearDown]
-        public void StopApplicationManager()
-        {
-            ApplicationManagerA.GetInstance().Stop();
-        }
     }
 }

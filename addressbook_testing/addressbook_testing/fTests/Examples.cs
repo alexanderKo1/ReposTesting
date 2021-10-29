@@ -4,7 +4,7 @@ using System;
 namespace addressbook_testing.fAppmanager
 {
     [TestClass]
-    public class Examples
+    class Examples
     {
         [TestMethod]
         public void ExampleTestMethod()

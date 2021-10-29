@@ -34,15 +34,7 @@ namespace addressbook_testing
             contactHelper = new ContactHelper(this);
         }
 
-        public static ApplicationManagerA GetInstance()
-        { 
-            if (! app.IsValueCreated) //Если объект не создан, то создать. Если создан - то исп. существующий. (Singleton) 
-            {
-                app.Value = new ApplicationManagerA();
-            }
-            return app.Value;
-        }
-        public void Stop()
+        ~ApplicationManagerA()
         {
             try
             {
@@ -52,6 +44,15 @@ namespace addressbook_testing
             {
                 // Ignore errors if unable to close the browser
             }
+        }
+
+        public static ApplicationManagerA GetInstance()
+        { 
+            if (! app.IsValueCreated) //Если объект не создан, то создать. Если создан - то исп. существующий. (Singleton) 
+            {
+                app.Value = new ApplicationManagerA();
+            }
+            return app.Value;
         }
 
         public IWebDriver Driver 
