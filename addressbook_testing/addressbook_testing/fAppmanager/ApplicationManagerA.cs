@@ -48,7 +48,7 @@ namespace addressbook_testing
 
         public static ApplicationManagerA GetInstance()
         { 
-            if (! app.IsValueCreated) //Если объект не создан, то создать. Если создан - то исп. существующий. (Singleton) 
+            if (! app.IsValueCreated) // Если объект не создан, то создать. Если создан - то исп. существующий. (Singleton) 
             {
                 app.Value = new ApplicationManagerA();
             }
