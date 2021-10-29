@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -20,7 +21,7 @@ namespace addressbook_testing
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
 
-        private static ApplicationManagerA instance;
+        private static ThreadLocal<ApplicationManagerA> app = new ThreadLocal<ApplicationManagerA>();
 
         private ApplicationManagerA()
         {
@@ -35,11 +36,11 @@ namespace addressbook_testing
 
         public static ApplicationManagerA GetInstance()
         { 
-            if (instance == null) //Если объект не создан, то создать. Если создан - то исп. существующий
+            if (! app.IsValueCreated) //Если объект не создан, то создать. Если создан - то исп. существующий. (Singleton) 
             {
-                instance = new ApplicationManagerA();
+                app.Value = new ApplicationManagerA();
             }
-            return instance;
+            return app.Value;
         }
         public void Stop()
         {
