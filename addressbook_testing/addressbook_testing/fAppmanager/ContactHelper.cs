@@ -83,12 +83,8 @@ namespace addressbook_testing
         }
         public ContactHelper NewEntry(EntryData ed)
         {
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(ed.FirstName);
-            driver.FindElement(By.Name("lastname")).Click();
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(ed.LastName);
+            Type(By.Name("firstname"), ed.FirstName);
+            Type(By.Name("lastname"), ed.LastName);
             return this;
         }
     }

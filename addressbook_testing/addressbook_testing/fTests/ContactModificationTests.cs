@@ -12,7 +12,8 @@ namespace addressbook_testing
         [Test]
         public void ContactModificationTest() //Тест модификации контакта 
         {
-            EntryData entryData = new EntryData("Фёдор2", "Владимирв2");
+            EntryData entryData = new EntryData("Johny");
+            entryData.LastName = "Travoltas";
 
             app.Contacts.Modify(13, entryData);
         }
