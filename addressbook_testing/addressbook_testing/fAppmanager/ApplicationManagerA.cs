@@ -50,7 +50,9 @@ namespace addressbook_testing
         { 
             if (! app.IsValueCreated) // Если объект не создан, то создать. Если создан - то исп. существующий. (Singleton) 
             {
-                app.Value = new ApplicationManagerA();
+                ApplicationManagerA newInstance = new ApplicationManagerA();
+                newInstance.Navigator.GoToHomePage();
+                app.Value = newInstance;
             }
             return app.Value;
         }

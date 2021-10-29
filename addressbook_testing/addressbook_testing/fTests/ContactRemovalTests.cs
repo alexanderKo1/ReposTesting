@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace addressbook_testing
 {
-    class ContactRemovalTests : TestBase
+    class ContactRemovalTests : AuthTestBase
     {
         [Test]
         public void ContactRemovalTest() //Тест удаления контакта

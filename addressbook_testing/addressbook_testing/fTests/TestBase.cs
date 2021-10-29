@@ -12,7 +12,7 @@ namespace addressbook_testing
         protected ApplicationManagerA app;
 
         [SetUp]
-        public void SetupTest()
+        public void SetupApplicationManager()
         {
             app = ApplicationManagerA.GetInstance();
         }
