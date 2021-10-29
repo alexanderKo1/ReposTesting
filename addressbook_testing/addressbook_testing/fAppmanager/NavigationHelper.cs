@@ -17,15 +17,22 @@ namespace addressbook_testing
         {
             this.baseURL = baseURL;
         }
-        public NavigationHelper GoToHomePage()
+        public void GoToHomePage()
         {
-            driver.Navigate().GoToUrl(baseURL);
-            return this;
+            if (driver.Url == baseURL + "/addressbook/")
+            {
+                return;
+            }
+            driver.Navigate().GoToUrl(baseURL + "/addressbook/");
         }
-        public NavigationHelper GoToGroupsPage()
+        public void GoToGroupsPage()
         {
+            if (driver.Url == baseURL + "/addressbook/group.php"
+                && IsElementPresent(By.Name("new")))
+            {
+                return;
+            }
             driver.FindElement(By.LinkText("groups")).Click();
-            return this;
         }
         public NavigationHelper InitNewEntryCreation()
         {
