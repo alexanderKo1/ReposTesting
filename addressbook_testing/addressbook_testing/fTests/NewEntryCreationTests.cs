@@ -16,6 +16,7 @@ namespace addressbook_testing
             entryData.LastName = "Travolta";
 
             app.Contacts.Create(entryData);
+            //app.Driver.Quit();
         }
     }
 }

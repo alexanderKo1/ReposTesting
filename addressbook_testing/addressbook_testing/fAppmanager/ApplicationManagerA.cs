@@ -36,6 +36,7 @@ namespace addressbook_testing
 
         ~ApplicationManagerA()
         {
+            Console.Out.Write("!!!!!!!!!!!!!!!!!!!");
             try
             {
                 driver.Quit();
