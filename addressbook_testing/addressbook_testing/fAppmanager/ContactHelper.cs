@@ -16,14 +16,14 @@ namespace addressbook_testing
 
         public ContactHelper Modify(int v, EntryData entryData) //Метод модификации контакта
         {
-            ContactCreationCondition();
+            ContactCreationCondition(); //Вызов методапроверки, есть ли хотя бы один контакт. ДЗ8 
             Modify(v);
             NewEntry(entryData);
             Update();
             BackToHomePage();
             return this;
         }
-        public void ContactCreationCondition()
+        public void ContactCreationCondition() //Метод проверки, есть ли хотя бы один контакт. ДЗ8 
         {
             if (!IsCreated())
             {
@@ -45,13 +45,13 @@ namespace addressbook_testing
 
         public ContactHelper Remove(int ind) //Метод удаления контакта
         {
-            ContactCreationCondition();
+            ContactCreationCondition(); //Вызов метода проверки, есть ли хотя бы один контакт. ДЗ8 
             //SelectContactByID(ind);
             SelectContactByIndex(ind);
             RemoveCantact();
             return this;
         }
-        public bool IsCreated()
+        public bool IsCreated() //Возвращает bool - true, если есть хотя бы один контакт. ДЗ8
         {
             return IsElementPresent(By.CssSelector("table#maintable tr:nth-child(2) td.center input[type='checkbox']"));
         }

@@ -28,7 +28,7 @@ namespace addressbook_testing
         public GroupHelper Modify(int v, Group newData) //Метод модификации группы
         {
             manager.Navigator.GoToGroupsPage();
-            GroupCreationCondition();
+            GroupCreationCondition(); //Вызов метода проверки, есть ли хотя бы одна группа. ДЗ8 
             SelectGroup(v);
             InitGroupModification();
             FillGroupForm(newData);
@@ -40,20 +40,20 @@ namespace addressbook_testing
         public GroupHelper Remove(int index)
         {
             manager.Navigator.GoToGroupsPage();
-            GroupCreationCondition();
+            GroupCreationCondition();  //Вызов метода проверки, есть ли хотя бы одна группа. ДЗ8
             SelectGroup(index);
             RemoveGroup();
             ReturnToGroupsPage();
             return this;
         }
-        public void GroupCreationCondition() //Условие в методе
+        public void GroupCreationCondition()  //Метод проверки, есть ли хотя бы одна группа. ДЗ8 
         {
             if (!IsCreated())
             {
                 Create(new Group("groupTestA", "groupTestB"));
             }
         }
-        public bool IsCreated()
+        public bool IsCreated() //Возвращает bool - true, если есть хотя бы одна группа. ДЗ8
         {
             return IsElementPresent(By.XPath("//div[@id='content']/form/span[1]/input"));
         }
