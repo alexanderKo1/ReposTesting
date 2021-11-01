@@ -5,14 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium; //Необходимая библиотека Selenium. Установить в менеджере пакетов (ПКМ на References -> Manage NuGet Packages)
+using OpenQA.Selenium.Firefox; //Нужно установить Selenium.WebDriver и Selenium.Support
+using OpenQA.Selenium.Support.UI; //Также необходим NUnit Test adapter (2.6.4), что бы были доступны тесты фреймворка NUnit
 
 namespace addressbook_testing
 {
     public class ApplicationManagerA
     {
+        // protected - наследники могут доступиться до поля. Похож на private
         protected IWebDriver driver;
         protected string baseURL;
 
@@ -26,8 +27,9 @@ namespace addressbook_testing
         private ApplicationManagerA()
         {
             driver = new FirefoxDriver();
-            baseURL = "http://localhost";
+            baseURL = "http://localhost"; 
 
+            //Инициализация Помощников
             loginHelper = new LoginHelper(this);
             navigationHelper = new NavigationHelper(this, baseURL);
             groupHelper = new GroupHelper(this);
@@ -36,7 +38,6 @@ namespace addressbook_testing
 
         ~ApplicationManagerA()
         {
-            Console.Out.Write("!!!!!!!!!!!!!!!!!!!");
             try
             {
                 driver.Quit();
@@ -57,7 +58,7 @@ namespace addressbook_testing
             }
             return app.Value;
         }
-
+        //Свойства, чтобы доступиться до помощников
         public IWebDriver Driver 
         {
             get 
@@ -95,3 +96,15 @@ namespace addressbook_testing
         }
     }
 }
+
+
+/*
+NOTES
+
+Менеджер:
+field -> Initialisaion in constructor of the manager -> Property
+[I] В тестах вызываем через app.
+    В помощниках вызываем через manager.
+
+
+*/

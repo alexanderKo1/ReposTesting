@@ -39,7 +39,7 @@ namespace addressbook_testing
 
         public GroupHelper Remove(int index)
         {
-            manager.Navigator.GoToGroupsPage();
+            manager.Navigator.GoToGroupsPage(); //Вызвать методы помощников можно с помощью менеджера
             GroupCreationCondition();  //Вызов метода проверки, есть ли хотя бы одна группа. ДЗ8
             SelectGroup(index);
             RemoveGroup();

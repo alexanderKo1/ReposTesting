@@ -12,11 +12,11 @@ namespace addressbook_testing
         [Test]
         public void GroupCreationTest()
         {
-            Group group = new Group("121212");
-            group.Header = "22";
+            Group group = new Group("121212"); //Создаем экземпляр, а далее присваиваем переменным значения, используя поля
+            group.Header = "22"; //Так проще понимать, какому полю какое значение мы присвоили.
             group.Footer = "34";
 
-            app.Groups.Create(group);
+            app.Groups.Create(group); //Далее можно в параметре передать созданный объект с уже необходимыми значениями
             //app.Auth.Logout();
         }
         [Test]

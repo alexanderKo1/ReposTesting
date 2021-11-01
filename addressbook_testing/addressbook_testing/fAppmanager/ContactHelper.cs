@@ -16,7 +16,7 @@ namespace addressbook_testing
 
         public ContactHelper Modify(int v, EntryData entryData) //Метод модификации контакта
         {
-            ContactCreationCondition(); //Вызов методапроверки, есть ли хотя бы один контакт. ДЗ8 
+            ContactCreationCondition(); //Вызов метода проверки, есть ли хотя бы один контакт. ДЗ8 
             Modify(v);
             NewEntry(entryData);
             Update();

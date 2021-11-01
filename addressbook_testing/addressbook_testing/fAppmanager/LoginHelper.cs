@@ -13,7 +13,7 @@ namespace addressbook_testing
     public class LoginHelper : HelperBase
     {
         public LoginHelper(ApplicationManagerA manager) : base(manager) {}
-        public void Login(Account account)
+        public void Login(AccountData account)
         {
             if (IsLoggedIn())
             {
@@ -43,7 +43,7 @@ namespace addressbook_testing
             return IsElementPresent(By.CssSelector("form[name='logout'] a[href='#']"));
             //By.Name("logout")
         }
-        public bool IsLoggedIn(Account account)
+        public bool IsLoggedIn(AccountData account)
         {
             return IsLoggedIn()
                 && driver.FindElement(By.Name("logout")).FindElement(By.TagName("b")).Text 

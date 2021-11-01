@@ -17,7 +17,7 @@ namespace addressbook_testing
             app.Auth.Logout();
 
             //Действие
-            Account account = new Account("admin", "secret");
+            AccountData account = new AccountData("admin", "secret");
             app.Auth.Login(account);
 
             //Проверка
@@ -31,7 +31,7 @@ namespace addressbook_testing
             app.Auth.Logout();
 
             //Действие
-            Account accountInv = new Account("11", "12");
+            AccountData accountInv = new AccountData("11", "12");
             app.Navigator.Waiter(2);
             app.Auth.Login(accountInv);
             app.Navigator.Waiter(0);
