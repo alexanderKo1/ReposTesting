@@ -17,7 +17,7 @@ namespace addressbook_testing
             group.Footer = "34";
 
             app.Groups.Create(group);
-            //app.Auth.Logout(); 
+            //app.Auth.Logout();  
         }
 
         [Test]
