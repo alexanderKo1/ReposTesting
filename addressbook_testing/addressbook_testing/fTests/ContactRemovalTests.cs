@@ -10,7 +10,7 @@ namespace addressbook_testing
     class ContactRemovalTests : AuthTestBase
     {
         [Test]
-        public void ContactRemovalTest() //Тест удаления контакта
+        public void ContactRemovalTest() //Тест удаления контакта ДЗ 7
         {
             app.Contacts.Remove(2); 
         }
