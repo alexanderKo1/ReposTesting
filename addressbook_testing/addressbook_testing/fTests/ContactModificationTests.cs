@@ -10,7 +10,7 @@ namespace addressbook_testing
     class ContactModificationTests : AuthTestBase
     {
         [Test]
-        public void ContactModificationTest() //Тест модификации контакта 
+        public void ContactModificationTest() //Тест модификации контакта  
         {
             EntryData entryData = new EntryData("1");
             entryData.LastName = "2";
