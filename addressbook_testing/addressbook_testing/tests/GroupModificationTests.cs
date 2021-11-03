@@ -11,7 +11,7 @@ namespace addressbook_testing
     class GroupModificationTests : AuthTestBase
     {
         [Test]
-        public void GroupModificationTest() // Тест модификации группы ДЗ 7
+        public void GroupModificationTest() // Тест модификации группы ДЗ 7 
         {
             Group newData = new Group("A");
             newData.Header = null;
