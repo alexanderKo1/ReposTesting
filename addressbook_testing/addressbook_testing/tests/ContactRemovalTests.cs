@@ -13,7 +13,7 @@ namespace addressbook_testing
         public void ContactRemovalTest() //Тест удаления контакта ДЗ 7
         {
             //Предусловия
-            app.Contacts.ContactCreationCondition(); //Вызов метода проверки, есть ли хотя бы один контакт. ДЗ8 
+            app.Contacts.ContactCreationCondition(); //Вызов метода проверки, есть ли хотя бы один контакт. ДЗ8
 
             //Действие
             app.Contacts.Remove(2); 

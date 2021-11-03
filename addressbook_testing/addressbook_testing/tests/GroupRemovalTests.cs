@@ -13,7 +13,7 @@ namespace addressbook_testing
         public void GroupRemovalTesting()
         {
             //Предусловия
-            app.Groups.GroupCreationCondition();  //Вызов метода проверки, есть ли хотя бы одна группа. ДЗ8 
+            app.Groups.GroupCreationCondition();  //Вызов метода проверки, есть ли хотя бы одна группа. ДЗ8
 
             //Действие
             app.Groups.Remove(1);
