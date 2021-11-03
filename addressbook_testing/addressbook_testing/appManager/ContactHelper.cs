@@ -12,8 +12,78 @@ namespace addressbook_testing
 {
     public class ContactHelper : HelperBase
     {
-        public ContactHelper(IWebDriver driver) : base(driver) { }
+        public ContactHelper(ApplicationManagerA manager) : base(manager) { }
+
+        public ContactHelper Modify(int v, EntryData entryData) //Метод модификации контакта
+        {
+            ContactCreationCondition(); //Вызов метода проверки, есть ли хотя бы один контакт. ДЗ8
+            Modify(v);
+            NewEntry(entryData);
+            Update();
+            BackToHomePage();
+            return this;
+        }
+        public void ContactCreationCondition() //Метод проверки, есть ли хотя бы один контакт. ДЗ8 
+        {
+            if (!IsCreated())
+            {
+                Create(new EntryData("TestA", "TestB"));
+            }
+        }
+
+        public ContactHelper Update()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+
+        public ContactHelper Modify(int v)
+        {
+            driver.FindElement(By.CssSelector("table#maintable tr:nth-child(" + v + ") td.center img[title='Edit']")).Click();
+            return this;
+        }
+
+        public ContactHelper Remove(int ind) //Метод удаления контакта
+        { 
+            ContactCreationCondition(); //Вызов метода проверки, есть ли хотя бы один контакт. ДЗ8 
+            //SelectContactByID(ind);
+            SelectContactByIndex(ind);
+            RemoveCantact();
+            return this;
+        }
+        public bool IsCreated() //Возвращает bool - true, если есть хотя бы один контакт. ДЗ8
+        {
+            return IsElementPresent(By.CssSelector("table#maintable tr:nth-child(2) td.center input[type='checkbox']"));
+        }
+
+        public ContactHelper SelectContactByIndex(int ind)
+        {
+            driver.FindElement(By.CssSelector("table#maintable tr:nth-child(" + ind + ") td.center input[type='checkbox']")).Click();
+            return this;
+        }
+
+        public ContactHelper RemoveCantact()
+        {
+            driver.FindElement(By.XPath("//div[@class='left']//input[@value='Delete']")).Click();
+            driver.SwitchTo().Alert().Accept();
+            return this;
+        }
+
+        public ContactHelper SelectContactByID(int index)
+        {
+            driver.FindElement(By.XPath("//table[@id='maintable']//input[@id=" + index + "]")).Click();
+            return this;
+        }
+
         //EntryCreationTest
+        public ContactHelper Create(EntryData entryData)
+        {
+            manager.Navigator.InitNewEntryCreation();
+            NewEntry(entryData);
+            SubmitNewEntry();
+            BackToHomePage();
+            return this;
+        }
         public ContactHelper SubmitNewEntry()
         {
             driver.FindElement(By.Name("submit")).Click();
@@ -26,10 +96,8 @@ namespace addressbook_testing
         }
         public ContactHelper NewEntry(EntryData ed)
         {
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).SendKeys(ed.FirstName);
-            driver.FindElement(By.Name("lastname")).Click();
-            driver.FindElement(By.Name("lastname")).SendKeys(ed.LastName);
+            Type(By.Name("firstname"), ed.FirstName);
+            Type(By.Name("lastname"), ed.LastName);
             return this;
         }
     }

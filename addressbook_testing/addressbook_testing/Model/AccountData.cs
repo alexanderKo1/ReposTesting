@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace addressbook_testing
 {
-    public class Account
+    public class AccountData //Данные о пользователе
     {
-        private string username;
-        private string password;
-        public Account (string username, string password)
+        private string username; //Поле. 
+        private string password; 
+        public AccountData (string username, string password) //Конструктор
         {
             this.username = username;
             this.password = password;
         }
 
-        public string Username
+        public string Username //Свойство для поля username
         {
             get 
             {

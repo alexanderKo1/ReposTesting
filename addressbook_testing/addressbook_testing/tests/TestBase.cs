@@ -3,26 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
+using NUnit.Framework; //Библиотека NUnit. Рекомендуемая версия - 2.6.4;
+                       //Для запуска сценариев в современных версиях браузера Firefox нужен вспомогательный исполняемый файл geckodriver.
 
 namespace addressbook_testing
 {
     public class TestBase
     {
-        protected ApplicationManager app;
+        protected ApplicationManagerA app;
 
         [SetUp]
-        public void SetupTest()
+        public void SetupApplicationManager()
         {
-            app = new ApplicationManager();
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(new Account("admin", "secret"));
-        }
-
-        [TearDown]
-        public void TeardownTest()
-        {
-            app.Stop();
+            app = ApplicationManagerA.GetInstance();
         }
     }
 }

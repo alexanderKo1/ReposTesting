@@ -13,18 +13,50 @@ namespace addressbook_testing
     public class GroupHelper : HelperBase
     {
 
-        public GroupHelper(IWebDriver driver) : base(driver) { }
+        public GroupHelper(ApplicationManagerA manager) : base(manager) { }
         //GroupRemovalTests
-
-        public GroupHelper Create(Group groupD)
+        public GroupHelper Create(Group group)
         {
+            manager.Navigator.GoToGroupsPage();
             InitNewGroupCreation();
-            FillGroupForm(groupD);
+            FillGroupForm(group);
             SubmitGroupCreation();
-            ReturnToGroupsPage(); 
+            ReturnToGroupsPage();
             return this;
         }
 
+        public GroupHelper Modify(int v, Group newData) //Метод модификации группы
+        {
+            manager.Navigator.GoToGroupsPage();
+            GroupCreationCondition(); //Вызов метода проверки, есть ли хотя бы одна группа. ДЗ8 
+            SelectGroup(v);
+            InitGroupModification();
+            FillGroupForm(newData);
+            SubmitGroupModification();
+            ReturnToGroupsPage();
+            return this;
+        }
+
+        public GroupHelper Remove(int index)
+        {
+            manager.Navigator.GoToGroupsPage(); //Вызвать методы помощников можно с помощью менеджера
+            GroupCreationCondition();  //Вызов метода проверки, есть ли хотя бы одна группа. ДЗ8
+            SelectGroup(index);
+            RemoveGroup();
+            ReturnToGroupsPage();
+            return this;
+        }
+        public void GroupCreationCondition()  //Метод проверки, есть ли хотя бы одна группа. ДЗ8 
+        {
+            if (!IsCreated())
+            {
+                Create(new Group("groupTestA", "groupTestB"));
+            }
+        }
+        public bool IsCreated() //Возвращает bool - true, если есть хотя бы одна группа. ДЗ8
+        {
+            return IsElementPresent(By.XPath("//div[@id='content']/form/span[1]/input"));
+        }
         public GroupHelper ReturnToGroupsPage()
         {
             driver.FindElement(By.LinkText("group page")).Click();
@@ -48,20 +80,27 @@ namespace addressbook_testing
             driver.FindElement(By.Name("new")).Click();
             return this;
         }
-
-        public GroupHelper FillGroupForm(Group GroupD)
+        public GroupHelper FillGroupForm(Group groupD)
         {
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(GroupD.Name);
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(GroupD.Header);
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(GroupD.Footer);
+            Type(By.Name("group_name"), groupD.Name);
+            Type(By.Name("group_header"), groupD.Header);
+            Type(By.Name("group_footer"), groupD.Footer);
             return this;
         }
+
         public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
+            return this;
+        }
+        public GroupHelper SubmitGroupModification()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+        public GroupHelper InitGroupModification()
+        {
+            driver.FindElement(By.Name("edit")).Click();
             return this;
         }
     }

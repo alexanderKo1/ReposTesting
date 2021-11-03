@@ -59,25 +59,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="fTests\AuthTestBase.cs" />
-    <Compile Include="fTests\ContactModificationTests.cs" />
-    <Compile Include="fTests\ContactRemovalTests.cs" />
-    <Compile Include="fModel\AccountData.cs" />
-    <Compile Include="fAppmanager\ApplicationManagerA.cs" />
-    <Compile Include="fAppmanager\ContactHelper.cs" />
-    <Compile Include="fModel\EntryData.cs" />
-    <Compile Include="fModel\GroupData.cs" />
-    <Compile Include="fAppmanager\GroupHelper.cs" />
-    <Compile Include="fTests\GroupRemovalTests.cs" />
-    <Compile Include="fAppmanager\HelperBase.cs" />
-    <Compile Include="fAppmanager\LoginHelper.cs" />
-    <Compile Include="fAppmanager\NavigationHelper.cs" />
-    <Compile Include="fTests\GroupModificationTests.cs" />
-    <Compile Include="fTests\LoginTests.cs" />
+    <Compile Include="tests\AuthTestBase.cs" />
+    <Compile Include="tests\ContactModificationTests.cs" />
+    <Compile Include="tests\ContactRemovalTests.cs" />
+    <Compile Include="model\AccountData.cs" />
+    <Compile Include="appManager\ApplicationManager.cs" />
+    <Compile Include="appManager\ContactHelper.cs" />
+    <Compile Include="model\EntryData.cs" />
+    <Compile Include="model\GroupData.cs" />
+    <Compile Include="appManager\GroupHelper.cs" />
+    <Compile Include="tests\GroupRemovalTests.cs" />
+    <Compile Include="appManager\HelperBase.cs" />
+    <Compile Include="appManager\LoginHelper.cs" />
+    <Compile Include="appManager\NavigationHelper.cs" />
+    <Compile Include="tests\GroupModificationTests.cs" />
+    <Compile Include="tests\LoginTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="fTests\GroupCreationTests.cs" />
-    <Compile Include="fTests\NewEntryCreationTests.cs" />
-    <Compile Include="fTests\TestBase.cs" />
+    <Compile Include="tests\GroupCreationTests.cs" />
+    <Compile Include="tests\NewEntryCreationTests.cs" />
+    <Compile Include="tests\TestBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

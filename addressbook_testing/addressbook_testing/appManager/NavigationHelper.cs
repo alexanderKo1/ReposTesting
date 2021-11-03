@@ -13,21 +13,39 @@ namespace addressbook_testing
     public class NavigationHelper : HelperBase
     {
         protected string baseURL;
-        public NavigationHelper(IWebDriver driver, string baseURL) : base(driver)
+        public NavigationHelper(ApplicationManagerA manager, string baseURL) : base(manager)
         {
             this.baseURL = baseURL;
         }
         public void GoToHomePage()
         {
-            driver.Navigate().GoToUrl(baseURL);
+            if (driver.Url == baseURL + "/addressbook/")
+            {
+                return;
+            }
+            driver.Navigate().GoToUrl(baseURL + "/addressbook/");
         }
         public void GoToGroupsPage()
         {
+            if (driver.Url == baseURL + "/addressbook/group.php"
+                && IsElementPresent(By.Name("new")))
+            {
+                return;
+            }
             driver.FindElement(By.LinkText("groups")).Click();
         }
         public void InitNewEntryCreation()
         {
+            //if (IsElementPresent(By.LinkText("add new")))
+            //{
+            //    driver.FindElement(By.LinkText("add new")).Click();
+            //}
+            driver.Navigate().GoToUrl(baseURL + "/addressbook/");
             driver.FindElement(By.LinkText("add new")).Click();
+        }
+        public void Waiter(int time)
+        {
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(time);
         }
     }
 }

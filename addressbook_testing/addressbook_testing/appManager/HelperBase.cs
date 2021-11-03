@@ -13,9 +13,32 @@ namespace addressbook_testing
     public class HelperBase
     {
         protected IWebDriver driver;
-        public HelperBase(IWebDriver driver)
+        protected ApplicationManagerA manager;
+
+        public HelperBase(ApplicationManagerA manager)
         {
-            this.driver = driver;
+            this.driver = manager.Driver;
+            this.manager = manager;
+        }
+        public void Type(By locator, string text)
+        {
+            if (text != null)
+            {
+                driver.FindElement(locator).Clear();
+                driver.FindElement(locator).SendKeys(text);
+            }
+        }
+        public bool IsElementPresent(By by)
+        {
+            try
+            {
+                driver.FindElement(by);
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
         }
     }
 }
