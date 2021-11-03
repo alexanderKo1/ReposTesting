@@ -12,6 +12,10 @@ namespace addressbook_testing
         [Test]
         public void GroupRemovalTesting()
         {
+            //Предусловия
+            app.Groups.GroupCreationCondition();  //Вызов метода проверки, есть ли хотя бы одна группа. ДЗ8
+
+            //Действие
             app.Groups.Remove(1);
         }
     }

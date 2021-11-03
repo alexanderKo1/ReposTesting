@@ -13,6 +13,10 @@ namespace addressbook_testing
         [Test]
         public void GroupModificationTest() // Тест модификации группы ДЗ 7 
         {
+            //Предусловия
+            app.Groups.GroupCreationCondition();  //Вызов метода проверки, есть ли хотя бы одна группа. ДЗ8
+
+            //Действие
             Group newData = new Group("A");
             newData.Header = null;
             newData.Footer = null;

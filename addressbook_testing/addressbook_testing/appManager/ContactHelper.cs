@@ -16,7 +16,6 @@ namespace addressbook_testing
 
         public ContactHelper Modify(int v, EntryData entryData) //Метод модификации контакта
         {
-            ContactCreationCondition(); //Вызов метода проверки, есть ли хотя бы один контакт. ДЗ8
             Modify(v);
             NewEntry(entryData);
             Update();
@@ -45,7 +44,6 @@ namespace addressbook_testing
 
         public ContactHelper Remove(int ind) //Метод удаления контакта
         { 
-            ContactCreationCondition(); //Вызов метода проверки, есть ли хотя бы один контакт. ДЗ8 
             //SelectContactByID(ind);
             SelectContactByIndex(ind);
             RemoveCantact();
