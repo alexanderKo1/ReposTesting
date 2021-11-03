@@ -13,7 +13,7 @@ namespace addressbook_testing
         public void ContactModificationTest() //Тест модификации контакта ДЗ 7
         {
             //Предусловия
-            app.Contacts.ContactCreationCondition(); //Вызов метода проверки, есть ли хотя бы один контакт. ДЗ8
+            app.Contacts.ContactCreationCondition(); //Вызов метода проверки, есть ли хотя бы один контакт. ДЗ8 
             
             //Действие
             EntryData entryData = new EntryData("24");
