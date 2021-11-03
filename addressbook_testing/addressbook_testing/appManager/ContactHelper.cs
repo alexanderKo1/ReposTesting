@@ -12,7 +12,7 @@ namespace addressbook_testing
 {
     public class ContactHelper : HelperBase
     {
-        public ContactHelper(ApplicationManagerA manager) : base(manager) { }
+        public ContactHelper(ApplicationManager manager) : base(manager) { }
 
         public ContactHelper Modify(int v, EntryData entryData) //Метод модификации контакта
         {

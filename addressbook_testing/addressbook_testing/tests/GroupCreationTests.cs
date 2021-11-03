@@ -12,7 +12,7 @@ namespace addressbook_testing
         [Test]
         public void GroupCreationTest()
         {
-            Group group = new Group("121212"); //Создаем экземпляр, а далее присваиваем переменным значения, используя поля
+            GroupData group = new GroupData("121212"); //Создаем экземпляр, а далее присваиваем переменным значения, используя поля
             group.Header = "22"; //Так проще понимать, какому полю какое значение мы присвоили.
             group.Footer = "34";
 
@@ -22,7 +22,7 @@ namespace addressbook_testing
         [Test]
         public void EmptyGroupCreationTest()
         {
-            Group group = new Group("");
+            GroupData group = new GroupData("");
             group.Header = "";
             group.Footer = "";
 

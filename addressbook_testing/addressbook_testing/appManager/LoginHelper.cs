@@ -12,7 +12,7 @@ namespace addressbook_testing
 {
     public class LoginHelper : HelperBase
     {
-        public LoginHelper(ApplicationManagerA manager) : base(manager) {}
+        public LoginHelper(ApplicationManager manager) : base(manager) {}
         public void Login(AccountData account)
         {
             if (IsLoggedIn())

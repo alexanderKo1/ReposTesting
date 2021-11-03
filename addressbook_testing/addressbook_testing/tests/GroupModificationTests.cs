@@ -17,7 +17,7 @@ namespace addressbook_testing
             app.Groups.GroupCreationCondition();  //Вызов метода проверки, есть ли хотя бы одна группа. ДЗ8 
 
             //Действие
-            Group newData = new Group("A");
+            GroupData newData = new GroupData("A");
             newData.Header = null;
             newData.Footer = null;
 

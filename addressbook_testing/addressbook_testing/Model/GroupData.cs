@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace addressbook_testing
 {
-    public class Group
+    public class GroupData
     {
         private string name;
         private string header;
         private string footer;
 
-        public Group(string name)
+        public GroupData(string name)
         {
             this.name = name;
         }
-        public Group(string name, string header)
+        public GroupData(string name, string header)
         {
             this.name = name;
             this.header = header;
         }
-        public Group(string name, string header, string footer)
+        public GroupData(string name, string header, string footer)
         {
             this.name = name;
             this.header = header;

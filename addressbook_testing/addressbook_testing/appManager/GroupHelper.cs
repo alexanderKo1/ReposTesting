@@ -13,9 +13,9 @@ namespace addressbook_testing
     public class GroupHelper : HelperBase
     {
 
-        public GroupHelper(ApplicationManagerA manager) : base(manager) { }
+        public GroupHelper(ApplicationManager manager) : base(manager) { }
         //GroupRemovalTests
-        public GroupHelper Create(Group group)
+        public GroupHelper Create(GroupData group)
         {
             manager.Navigator.GoToGroupsPage();
             InitNewGroupCreation();
@@ -25,7 +25,7 @@ namespace addressbook_testing
             return this;
         }
 
-        public GroupHelper Modify(int v, Group newData) //Метод модификации группы
+        public GroupHelper Modify(int v, GroupData newData) //Метод модификации группы
         {
             manager.Navigator.GoToGroupsPage();
             SelectGroup(v);
@@ -49,7 +49,7 @@ namespace addressbook_testing
             manager.Navigator.GoToGroupsPage();
             if (!IsCreated())
             {
-                Create(new Group("groupTestA", "groupTestB"));
+                Create(new GroupData("groupTestA", "groupTestB"));
             }
         }
         public bool IsCreated() //Возвращает bool - true, если есть хотя бы одна группа. ДЗ8
@@ -79,7 +79,7 @@ namespace addressbook_testing
             driver.FindElement(By.Name("new")).Click();
             return this;
         }
-        public GroupHelper FillGroupForm(Group groupD)
+        public GroupHelper FillGroupForm(GroupData groupD)
         {
             Type(By.Name("group_name"), groupD.Name);
             Type(By.Name("group_header"), groupD.Header);

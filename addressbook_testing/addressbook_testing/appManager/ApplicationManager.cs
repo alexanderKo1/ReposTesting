@@ -11,7 +11,7 @@ using OpenQA.Selenium.Support.UI; //Также необходим NUnit Test ada
 
 namespace addressbook_testing
 {
-    public class ApplicationManagerA
+    public class ApplicationManager
     {
         // protected - наследники могут доступиться до поля. Похож на private
         protected IWebDriver driver;
@@ -22,9 +22,9 @@ namespace addressbook_testing
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
 
-        private static ThreadLocal<ApplicationManagerA> app = new ThreadLocal<ApplicationManagerA>();
+        private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
-        private ApplicationManagerA()
+        private ApplicationManager()
         {
             driver = new FirefoxDriver();
             baseURL = "http://localhost"; 
@@ -36,7 +36,7 @@ namespace addressbook_testing
             contactHelper = new ContactHelper(this);
         }
 
-        ~ApplicationManagerA()
+        ~ApplicationManager()
         {
             try
             {
@@ -48,11 +48,11 @@ namespace addressbook_testing
             }
         }
 
-        public static ApplicationManagerA GetInstance()
+        public static ApplicationManager GetInstance()
         { 
             if (! app.IsValueCreated) //Если объект не создан, то создать. Если создан - то исп. существующий. (Singleton) 
             {
-                ApplicationManagerA newInstance = new ApplicationManagerA();
+                ApplicationManager newInstance = new ApplicationManager();
                 newInstance.Navigator.GoToHomePage();
                 app.Value = newInstance;
             }

@@ -10,12 +10,12 @@ namespace addressbook_testing
 {
     public class TestBase
     {
-        protected ApplicationManagerA app;
+        protected ApplicationManager app;
 
         [SetUp]
         public void SetupApplicationManager()
         {
-            app = ApplicationManagerA.GetInstance();
+            app = ApplicationManager.GetInstance();
         }
     }
 }
