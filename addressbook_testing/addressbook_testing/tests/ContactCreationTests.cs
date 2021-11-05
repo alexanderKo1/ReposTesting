@@ -14,7 +14,7 @@ namespace addressbook_testing
         public void ContactCreationTest()
         {
             EntryData entryData = new EntryData("Кузьма");
-            entryData.LastName = "Соколов";
+            entryData.LastName = "Соколовя";
 
             List<EntryData> oldContacts = app.Contacts.GetContactList();
 

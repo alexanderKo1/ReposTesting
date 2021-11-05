@@ -41,12 +41,21 @@ namespace addressbook_testing
         }
         public int CompareTo(EntryData other)
         {
+            int r1;
+            int r2;
+
             if (Object.ReferenceEquals(other, null))
             {
                 return 1;
             }
+            r1 = FirstName.CompareTo(other.FirstName);
+            r2 = LastName.CompareTo(other.LastName);
 
-            return FirstName.CompareTo(other.FirstName);
+            if (r1 == 0)
+            { 
+                return r2;
+            }
+            return r1;
         }
 
         public string FirstName
