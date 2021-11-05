@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -15,8 +16,18 @@ namespace addressbook_testing
             EntryData entryData = new EntryData("John");
             entryData.LastName = "Travolta";
 
+            List<EntryData> oldContacts = app.Contacts.GetContactList();
+
             app.Contacts.Create(entryData);
-            //app.Driver.Quit();
+
+            List<EntryData> newContacts = app.Contacts.GetContactList();
+
+            app.Contacts.ContactMonitor(newContacts); //Вспомогательный метод, чтобы посмотреть контакты в консоли
+
+            oldContacts.Add(entryData);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }

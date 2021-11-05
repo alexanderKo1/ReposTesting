@@ -22,6 +22,28 @@ namespace addressbook_testing
             BackToHomePage();
             return this;
         }
+        public List<EntryData> GetContactList()
+        {
+            List<EntryData> contacts = new List<EntryData>();
+            manager.Navigator.GoToHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//table[@id='maintable']//tr[@name='entry']"));
+            foreach (IWebElement element in elements)
+            {
+                contacts.Add(new EntryData(element.FindElement(By.XPath("td[3]")).Text, element.FindElement(By.XPath("td[2]")).Text));
+            }
+
+            return contacts;
+        }
+        public void ContactMonitor(List<EntryData> newContacts)
+        {
+            int id = 0;
+            foreach (EntryData element in newContacts)
+            {
+                System.Console.Out.Write((++id) + " | ");
+                System.Console.Out.Write(element.FirstName + " | ");
+                System.Console.Out.Write(element.LastName + " \n");
+            }
+        }
         public void ContactCreationCondition() //Метод проверки, есть ли хотя бы один контакт. ДЗ8 
         {
             if (!IsCreated())
