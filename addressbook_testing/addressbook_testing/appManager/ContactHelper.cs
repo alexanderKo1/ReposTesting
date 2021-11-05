@@ -39,10 +39,9 @@ namespace addressbook_testing
             int id = 0;
             foreach (EntryData element in Contacts)
             {
-                System.Console.Out.Write((++id) + " | ");
-                System.Console.Out.Write(element.FirstName + " | ");
-                System.Console.Out.Write(element.LastName + " \n");
+                System.Console.Out.Write((++id) + " | " + element.ToString());
             }
+            System.Console.Out.Write("FINISHED" + "\n");
         }
         public void ContactCreationCondition() //Метод проверки, есть ли хотя бы один контакт. ДЗ8 
         {

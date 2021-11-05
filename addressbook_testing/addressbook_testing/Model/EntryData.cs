@@ -29,15 +29,15 @@ namespace addressbook_testing
             {
                 return true;
             }
-            return firstName == other.firstName;
+            return (FirstName == other.firstName && LastName == other.LastName);
         }
         public override int GetHashCode()
         {
-            return firstName.GetHashCode();
+            return FirstName.GetHashCode();
         }
         public override string ToString()
         {
-            return "name = " + firstName;
+            return "FirstName = " + FirstName + "; LastName = " + LastName;
         }
         public int CompareTo(EntryData other)
         {
@@ -45,7 +45,8 @@ namespace addressbook_testing
             {
                 return 1;
             }
-            return firstName.CompareTo(other.firstName);
+
+            return FirstName.CompareTo(other.FirstName);
         }
 
         public string FirstName

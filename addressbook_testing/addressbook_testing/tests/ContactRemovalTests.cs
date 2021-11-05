@@ -29,7 +29,7 @@ namespace addressbook_testing
 
             //app.Contacts.ContactMonitor(oldContacts);
 
-            app.Contacts.ContactEquality(oldContacts, newContacts); // ДЗ 9. Проверка, совпадает ли FirstName и LastName
+            Assert.AreEqual(oldContacts, newContacts); // ДЗ 9. Проверка, совпадает ли FirstName и LastName
         }
     }
 }
