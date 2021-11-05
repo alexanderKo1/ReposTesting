@@ -31,7 +31,7 @@ namespace addressbook_testing
 
             //app.Contacts.ContactMonitor(oldContacts);
 
-            Assert.AreEqual(oldContacts, newContacts);
+            app.Contacts.ContactEquality(oldContacts, newContacts);
         }
     }
 }

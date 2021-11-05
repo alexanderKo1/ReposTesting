@@ -27,7 +27,8 @@ namespace addressbook_testing
             oldContacts.Add(entryData);
             oldContacts.Sort();
             newContacts.Sort();
-            Assert.AreEqual(oldContacts, newContacts);
+
+            app.Contacts.ContactEquality(oldContacts, newContacts);
 
             app.Contacts.ContactMonitor(oldContacts); //Вспомогательный метод, чтобы посмотреть контакты в консоли
             app.Contacts.ContactMonitor(newContacts); //Вспомогательный метод, чтобы посмотреть контакты в консоли
