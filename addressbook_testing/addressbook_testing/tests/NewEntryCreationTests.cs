@@ -13,23 +13,24 @@ namespace addressbook_testing
         [Test]
         public void ANewEntryCreationTest()
         {
-            EntryData entryData = new EntryData("Андрей");
-            entryData.LastName = "Владимиров";
+            EntryData entryData = new EntryData("Геннадий");
+            entryData.LastName = "Гетроя";
 
             List<EntryData> oldContacts = app.Contacts.GetContactList();
 
-            app.Contacts.ContactMonitor(oldContacts);
+            //app.Contacts.ContactMonitor(oldContacts);
 
             app.Contacts.Create(entryData);
 
             List<EntryData> newContacts = app.Contacts.GetContactList();
 
-            app.Contacts.ContactMonitor(newContacts); //Вспомогательный метод, чтобы посмотреть контакты в консоли
-
             oldContacts.Add(entryData);
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
+
+            app.Contacts.ContactMonitor(oldContacts); //Вспомогательный метод, чтобы посмотреть контакты в консоли
+            app.Contacts.ContactMonitor(newContacts); //Вспомогательный метод, чтобы посмотреть контакты в консоли
         }
     }
 }

@@ -44,6 +44,7 @@ namespace addressbook_testing
                 System.Console.Out.Write(element.LastName + " \n");
             }
         }
+
         public void ContactCreationCondition() //Метод проверки, есть ли хотя бы один контакт. ДЗ8 
         {
             if (!IsCreated())
@@ -51,7 +52,14 @@ namespace addressbook_testing
                 Create(new EntryData("TestA", "TestB"));
             }
         }
-
+        public void ContactEquality(List<EntryData> oldContacts, List<EntryData> newContacts) //Проверка совпадений FirstName и LastName. ДЗ 9
+        {
+            for (int i = 0; i < oldContacts.Count; i++)
+            {
+                Assert.AreEqual(oldContacts[i].FirstName, newContacts[i].FirstName);
+                Assert.AreEqual(oldContacts[i].LastName, newContacts[i].LastName);
+            }
+        }
         public ContactHelper Update()
         {
             driver.FindElement(By.Name("update")).Click();
