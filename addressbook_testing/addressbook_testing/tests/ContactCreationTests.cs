@@ -11,14 +11,12 @@ namespace addressbook_testing
     public class EntryCreationTest : AuthTestBase
     {
         [Test]
-        public void ANewEntryCreationTest()
+        public void ContactCreationTest()
         {
-            EntryData entryData = new EntryData("Геннадий");
-            entryData.LastName = "Гетроя";
+            EntryData entryData = new EntryData("Кузьма");
+            entryData.LastName = "Соколов";
 
             List<EntryData> oldContacts = app.Contacts.GetContactList();
-
-            //app.Contacts.ContactMonitor(oldContacts);
 
             app.Contacts.Create(entryData);
 
@@ -28,7 +26,7 @@ namespace addressbook_testing
             oldContacts.Sort();
             newContacts.Sort();
 
-            app.Contacts.ContactEquality(oldContacts, newContacts);
+            app.Contacts.ContactEquality(oldContacts, newContacts); // ДЗ 9. Проверка, совпадает ли FirstName и LastName
 
             app.Contacts.ContactMonitor(oldContacts); //Вспомогательный метод, чтобы посмотреть контакты в консоли
             app.Contacts.ContactMonitor(newContacts); //Вспомогательный метод, чтобы посмотреть контакты в консоли

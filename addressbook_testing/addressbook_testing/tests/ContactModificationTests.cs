@@ -25,8 +25,6 @@ namespace addressbook_testing
 
             List<EntryData> newContacts = app.Contacts.GetContactList();
 
-            //oldContacts[0].FirstName = entryData.FirstName;
-            //oldContacts[0].LastName = entryData.LastName;
             oldContacts[0].FirstName = entryData.FirstName;
             oldContacts[0].LastName = entryData.LastName;
             oldContacts.Sort();
@@ -35,7 +33,7 @@ namespace addressbook_testing
             app.Contacts.ContactMonitor(oldContacts); //Вспомогательный метод, чтобы посмотреть контакты в консоли
             app.Contacts.ContactMonitor(newContacts); //Вспомогательный метод, чтобы посмотреть контакты в консоли
 
-            app.Contacts.ContactEquality(oldContacts, newContacts);
+            app.Contacts.ContactEquality(oldContacts, newContacts); // ДЗ 9. Проверка, совпадает ли FirstName и LastName
         }
     }
 }

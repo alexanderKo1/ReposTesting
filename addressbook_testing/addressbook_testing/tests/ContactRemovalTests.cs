@@ -17,8 +17,6 @@ namespace addressbook_testing
             app.Contacts.ContactCreationCondition(); //Вызов метода проверки, есть ли хотя бы один контакт. ДЗ8
             List<EntryData> oldContacts = app.Contacts.GetContactList();
 
-            //app.Contacts.ContactMonitor(oldContacts);
-
             //Действие
             app.Contacts.Remove(0);
             app.Navigator.WaitFor(By.XPath("//div[@class='left']//input[@value='Delete']"), 1000, 4);
@@ -31,7 +29,7 @@ namespace addressbook_testing
 
             //app.Contacts.ContactMonitor(oldContacts);
 
-            app.Contacts.ContactEquality(oldContacts, newContacts);
+            app.Contacts.ContactEquality(oldContacts, newContacts); // ДЗ 9. Проверка, совпадает ли FirstName и LastName
         }
     }
 }

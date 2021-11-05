@@ -34,17 +34,16 @@ namespace addressbook_testing
 
             return contacts;
         }
-        public void ContactMonitor(List<EntryData> newContacts)
+        public void ContactMonitor(List<EntryData> Contacts)
         {
             int id = 0;
-            foreach (EntryData element in newContacts)
+            foreach (EntryData element in Contacts)
             {
                 System.Console.Out.Write((++id) + " | ");
                 System.Console.Out.Write(element.FirstName + " | ");
                 System.Console.Out.Write(element.LastName + " \n");
             }
         }
-
         public void ContactCreationCondition() //Метод проверки, есть ли хотя бы один контакт. ДЗ8 
         {
             if (!IsCreated())
