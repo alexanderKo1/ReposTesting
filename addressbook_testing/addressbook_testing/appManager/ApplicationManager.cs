@@ -106,5 +106,42 @@ field -> Initialisaion in constructor of the manager -> Property
 [I] В тестах вызываем через app.
     В помощниках вызываем через manager.
 
+==================================================================
+Циклы. Справочник
+string[] s = new string[] {"zero", "one", "two", "three"};
+
+// Удобно при работе с контейнерами:
+// 1
+for (int i = 0; i < s.length; i++)
+{
+	System.Console.Out.Write(s[i] + "\n")
+}
+
+// 2
+foreach (string element in s)
+{
+	System.Console.Out.Write(element + "\n")
+}
+
+// удобно при выполнении действий до тех пор, пока не выполнится какое-то условие
+// Ожидание появления элемента на странице, например.
+
+IWebDriver driver = null;
+int attemp = 0; // количество попыток
+
+// 1
+while (driver.FindElements(By.Id("test").Count == 0 && attempt < 6)
+{
+	System.Threading.Thread.Sleep(1000);
+	attemp++;
+}
+
+// 2
+do
+{
+	System.Threading.Thread.Sleep(1000);
+	attemp++;
+} while (driver.FindElements(By.Id("test").Count == 0 && attempt < 6);
+==================================================================
 
 */

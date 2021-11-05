@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace addressbook_testing
@@ -16,8 +17,12 @@ namespace addressbook_testing
             group.Header = "22"; //Так проще понимать, какому полю какое значение мы присвоили.
             group.Footer = "34";
 
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
             app.Groups.Create(group); //Далее можно в параметре передать созданный объект с уже необходимыми значениями
-            //app.Auth.Logout();
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
         }
         [Test]
         public void EmptyGroupCreationTest()
@@ -26,7 +31,26 @@ namespace addressbook_testing
             group.Header = "";
             group.Footer = "";
 
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
             app.Groups.Create(group);
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+        }
+        [Test]
+        public void BadNameGroupCreationTest()
+        {
+            GroupData group = new GroupData("а'а");
+            group.Header = "";
+            group.Footer = "";
+
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
+            app.Groups.Create(group);
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
         }
     }
 }
