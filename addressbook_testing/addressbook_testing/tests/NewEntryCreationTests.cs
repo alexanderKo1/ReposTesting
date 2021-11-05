@@ -13,10 +13,12 @@ namespace addressbook_testing
         [Test]
         public void ANewEntryCreationTest()
         {
-            EntryData entryData = new EntryData("John");
-            entryData.LastName = "Travolta";
+            EntryData entryData = new EntryData("Андрей");
+            entryData.LastName = "Владимиров";
 
             List<EntryData> oldContacts = app.Contacts.GetContactList();
+
+            app.Contacts.ContactMonitor(oldContacts);
 
             app.Contacts.Create(entryData);
 

@@ -13,6 +13,7 @@ namespace addressbook_testing
     public class NavigationHelper : HelperBase
     {
         protected string baseURL;
+        private int attempt = 0;
         public NavigationHelper(ApplicationManager manager, string baseURL) : base(manager)
         {
             this.baseURL = baseURL;
@@ -46,6 +47,14 @@ namespace addressbook_testing
         public void Waiter(int time)
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(time);
+        }
+        public void WaitFor(By by, int sec, int attempts)
+        {
+            do
+            {
+                System.Threading.Thread.Sleep(sec);
+                attempt++;
+            } while (driver.FindElements(by).Count == 0 && attempt < attempts);
         }
     }
 }
