@@ -22,7 +22,11 @@ namespace addressbook_testing
             app.Groups.Create(group); //Далее можно в параметре передать созданный объект с уже необходимыми значениями
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
-            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
         [Test]
         public void EmptyGroupCreationTest()
