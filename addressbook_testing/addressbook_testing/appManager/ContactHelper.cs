@@ -14,7 +14,7 @@ namespace addressbook_testing
     {
         public ContactHelper(ApplicationManager manager) : base(manager) { }
 
-        public ContactHelper Modify(int v, EntryData entryData) //Метод модификации контакта
+        public ContactHelper Modify(int v, ContactData entryData) //Метод модификации контакта
         {
             Modify(v);
             NewEntry(entryData);
@@ -22,22 +22,22 @@ namespace addressbook_testing
             BackToHomePage();
             return this;
         }
-        public List<EntryData> GetContactList()
+        public List<ContactData> GetContactList()
         {
-            List<EntryData> contacts = new List<EntryData>();
+            List<ContactData> contacts = new List<ContactData>();
             manager.Navigator.GoToHomePage();
             ICollection<IWebElement> elements = driver.FindElements(By.XPath("//table[@id='maintable']//tr[@name='entry']"));
             foreach (IWebElement element in elements)
             {
-                contacts.Add(new EntryData(element.FindElement(By.XPath("td[3]")).Text, element.FindElement(By.XPath("td[2]")).Text));
+                contacts.Add(new ContactData(element.FindElement(By.XPath("td[3]")).Text, element.FindElement(By.XPath("td[2]")).Text));
             }
 
             return contacts;
         }
-        public void ContactMonitor(List<EntryData> Contacts)
+        public void ContactMonitor(List<ContactData> Contacts)
         {
             int id = 0;
-            foreach (EntryData element in Contacts)
+            foreach (ContactData element in Contacts)
             {
                 System.Console.Out.Write((++id) + " | " + element.ToString());
             }
@@ -47,10 +47,10 @@ namespace addressbook_testing
         {
             if (!IsCreated())
             {
-                Create(new EntryData("TestA", "TestB"));
+                Create(new ContactData("TestA", "TestB"));
             }
         }
-        public void ContactEquality(List<EntryData> oldContacts, List<EntryData> newContacts) //Проверка совпадений FirstName и LastName. ДЗ 9
+        public void ContactEquality(List<ContactData> oldContacts, List<ContactData> newContacts) //Проверка совпадений FirstName и LastName. ДЗ 9
         {
             for (int i = 0; i < oldContacts.Count; i++)
             {
@@ -102,7 +102,7 @@ namespace addressbook_testing
         }
 
         //EntryCreationTest
-        public ContactHelper Create(EntryData entryData)
+        public ContactHelper Create(ContactData entryData)
         {
             manager.Navigator.InitNewEntryCreation();
             NewEntry(entryData);
@@ -120,7 +120,7 @@ namespace addressbook_testing
             driver.FindElement(By.LinkText("home page")).Click();
             return this;
         }
-        public ContactHelper NewEntry(EntryData ed)
+        public ContactHelper NewEntry(ContactData ed)
         {
             Type(By.Name("firstname"), ed.FirstName);
             Type(By.Name("lastname"), ed.LastName);

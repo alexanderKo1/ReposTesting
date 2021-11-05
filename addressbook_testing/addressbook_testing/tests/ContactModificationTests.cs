@@ -16,14 +16,14 @@ namespace addressbook_testing
             app.Contacts.ContactCreationCondition(); //Вызов метода проверки, есть ли хотя бы один контакт. ДЗ8
             
             //Действие
-            EntryData entryData = new EntryData("Яков");
+            ContactData entryData = new ContactData("Яков");
             entryData.LastName = "Белов";
 
-            List<EntryData> oldContacts = app.Contacts.GetContactList();
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
 
             app.Contacts.Modify(0, entryData);
 
-            List<EntryData> newContacts = app.Contacts.GetContactList();
+            List<ContactData> newContacts = app.Contacts.GetContactList();
 
             oldContacts[0].FirstName = entryData.FirstName;
             oldContacts[0].LastName = entryData.LastName;

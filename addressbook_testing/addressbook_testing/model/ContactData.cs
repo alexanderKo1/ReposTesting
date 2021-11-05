@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace addressbook_testing
 {
-    public class EntryData : IEquatable<EntryData>, IComparable<EntryData>
+    public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         private string firstName;
         private string lastName;
-        public EntryData(string firstName)
+        public ContactData(string firstName)
         {
             this.firstName = firstName;
         }
-        public EntryData(string firstName, string lastName)
+        public ContactData(string firstName, string lastName)
         {
             this.firstName = firstName;
             this.lastName = lastName;
         }
-        public bool Equals(EntryData other)
+        public bool Equals(ContactData other)
         {
             if (Object.ReferenceEquals(other, null))
             {
@@ -39,7 +39,7 @@ namespace addressbook_testing
         {
             return "FirstName = " + FirstName + "; LastName = " + LastName;
         }
-        public int CompareTo(EntryData other)
+        public int CompareTo(ContactData other)
         {
             int r1;
             int r2;

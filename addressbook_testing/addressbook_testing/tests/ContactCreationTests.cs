@@ -13,14 +13,14 @@ namespace addressbook_testing
         [Test]
         public void ContactCreationTest()
         {
-            EntryData entryData = new EntryData("Кузьма");
+            ContactData entryData = new ContactData("Кузьма");
             entryData.LastName = "Соколовя";
 
-            List<EntryData> oldContacts = app.Contacts.GetContactList();
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
 
             app.Contacts.Create(entryData);
 
-            List<EntryData> newContacts = app.Contacts.GetContactList();
+            List<ContactData> newContacts = app.Contacts.GetContactList();
 
             oldContacts.Add(entryData);
             oldContacts.Sort();

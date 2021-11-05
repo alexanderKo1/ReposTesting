@@ -15,13 +15,13 @@ namespace addressbook_testing
         {
             //Предусловия
             app.Contacts.ContactCreationCondition(); //Вызов метода проверки, есть ли хотя бы один контакт. ДЗ8
-            List<EntryData> oldContacts = app.Contacts.GetContactList();
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
 
             //Действие
             app.Contacts.Remove(0);
             app.Navigator.WaitFor(By.XPath("//div[@class='left']//input[@value='Delete']"), 1000, 4);
 
-            List<EntryData> newContacts = app.Contacts.GetContactList();
+            List<ContactData> newContacts = app.Contacts.GetContactList();
 
             //app.Contacts.ContactMonitor(newContacts);
 
