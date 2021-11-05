@@ -21,7 +21,7 @@ namespace addressbook_testing
 
             List<EntryData> oldContacts = app.Contacts.GetContactList();
 
-            app.Contacts.Modify(2, entryData);
+            app.Contacts.Modify(0, entryData);
 
             List<EntryData> newContacts = app.Contacts.GetContactList();
 

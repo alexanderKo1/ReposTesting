@@ -20,7 +20,7 @@ namespace addressbook_testing
             //app.Contacts.ContactMonitor(oldContacts);
 
             //Действие
-            app.Contacts.Remove(2);
+            app.Contacts.Remove(0);
             app.Navigator.WaitFor(By.XPath("//div[@class='left']//input[@value='Delete']"), 1000, 4);
 
             List<EntryData> newContacts = app.Contacts.GetContactList();

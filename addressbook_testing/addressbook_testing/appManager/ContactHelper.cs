@@ -68,7 +68,7 @@ namespace addressbook_testing
 
         public ContactHelper Modify(int v)
         {
-            driver.FindElement(By.CssSelector("table#maintable tr:nth-child(" + v + ") td.center img[title='Edit']")).Click();
+            driver.FindElement(By.CssSelector("table#maintable tr:nth-child(" + (v + 2) + ") td.center img[title='Edit']")).Click();
             return this;
         }
 
@@ -86,7 +86,7 @@ namespace addressbook_testing
 
         public ContactHelper SelectContactByIndex(int ind)
         {
-            driver.FindElement(By.CssSelector("table#maintable tr:nth-child(" + ind + ") td.center input[type='checkbox']")).Click();
+            driver.FindElement(By.CssSelector("table#maintable tr:nth-child(" + (ind + 2) + ") td.center input[type='checkbox']")).Click();
             return this;
         }
 
