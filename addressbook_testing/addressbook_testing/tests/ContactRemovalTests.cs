@@ -35,6 +35,9 @@ namespace addressbook_testing
             {
                 Assert.AreNotEqual(contacts.Id, toBeRemoved.Id);
             }
+
+            app.Contacts.ContactMonitor(oldContacts); //Вспомогательный метод, чтобы посмотреть контакты в консоли
+            app.Contacts.ContactMonitor(newContacts); //Вспомогательный метод, чтобы посмотреть контакты в консоли
         }
     }
 }

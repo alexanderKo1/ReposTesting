@@ -35,7 +35,7 @@ namespace addressbook_testing
         }
         public override string ToString()
         {
-            return "FirstName = " + FirstName + "; LastName = " + LastName;
+            return "LastName = " + LastName + "; FirstName = " + FirstName;
         }
         public int CompareTo(ContactData other)
         {
