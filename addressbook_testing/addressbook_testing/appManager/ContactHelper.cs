@@ -33,7 +33,10 @@ namespace addressbook_testing
                 ICollection<IWebElement> elements = driver.FindElements(By.XPath("//table[@id='maintable']//tr[@name='entry']"));
                 foreach (IWebElement element in elements)
                 {
-                    contactCache.Add(new ContactData(element.FindElement(By.XPath("td[3]")).Text, element.FindElement(By.XPath("td[2]")).Text));
+                    contactCache.Add(new ContactData(element.FindElement(By.XPath("td[3]")).Text, element.FindElement(By.XPath("td[2]")).Text)
+                    {
+                        Id = element.FindElement(By.TagName("input")).GetAttribute("id")
+                    });
                 }
             }
             return new List<ContactData>(contactCache);
@@ -46,10 +49,10 @@ namespace addressbook_testing
 
         public void ContactMonitor(List<ContactData> Contacts)
         {
-            int id = 0;
+            int nn = 0;
             foreach (ContactData element in Contacts)
             {
-                System.Console.Out.Write((++id) + " | " + element.ToString());
+                System.Console.Out.Write((++nn) + " | " + element.Id + " | " + element.ToString());
             }
             System.Console.Out.Write("FINISHED" + "\n");
         }

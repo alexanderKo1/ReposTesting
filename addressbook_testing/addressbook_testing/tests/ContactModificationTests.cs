@@ -16,10 +16,11 @@ namespace addressbook_testing
             app.Contacts.ContactCreationCondition(); //Вызов метода проверки, есть ли хотя бы один контакт. ДЗ8
             
             //Действие
-            ContactData entryData = new ContactData("Яков");
+            ContactData entryData = new ContactData("Владимир");
             entryData.LastName = "Белов";
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
+            ContactData oldData = oldContacts[0];
 
             app.Contacts.Modify(0, entryData);
 
@@ -36,6 +37,15 @@ namespace addressbook_testing
             app.Contacts.ContactMonitor(newContacts); //Вспомогательный метод, чтобы посмотреть контакты в консоли
 
             Assert.AreEqual(oldContacts, newContacts);
+            
+            foreach (ContactData contacts in newContacts)
+            {
+                if (contacts.Id == oldData.Id)
+                {
+                    //Assert.AreEqual(entryData.FirstName, contacts.FirstName);
+                    Assert.AreEqual(entryData.LastName, contacts.LastName);
+                }
+            }            
         }
     }
 }

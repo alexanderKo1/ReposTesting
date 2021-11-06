@@ -25,13 +25,16 @@ namespace addressbook_testing
 
             List<ContactData> newContacts = app.Contacts.GetContactList();
 
-            //app.Contacts.ContactMonitor(newContacts);
+            ContactData toBeRemoved = oldContacts[0];
 
             oldContacts.RemoveAt(0);
 
-            //app.Contacts.ContactMonitor(oldContacts);
-
             Assert.AreEqual(oldContacts, newContacts); // ДЗ 9. Проверка, совпадает ли FirstName и LastName
+
+            foreach (ContactData contacts in newContacts)
+            {
+                Assert.AreNotEqual(contacts.Id, toBeRemoved.Id);
+            }
         }
     }
 }

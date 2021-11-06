@@ -8,16 +8,14 @@ namespace addressbook_testing
 {
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
-        private string firstName;
-        private string lastName;
         public ContactData(string firstName)
         {
-            this.firstName = firstName;
+            FirstName = firstName;
         }
         public ContactData(string firstName, string lastName)
         {
-            this.firstName = firstName;
-            this.lastName = lastName;
+            FirstName = firstName;
+            LastName = lastName;
         }
         public bool Equals(ContactData other)
         {
@@ -29,7 +27,7 @@ namespace addressbook_testing
             {
                 return true;
             }
-            return (FirstName == other.firstName && LastName == other.LastName);
+            return (FirstName == other.FirstName && LastName == other.LastName);
         }
         public override int GetHashCode()
         {
@@ -41,44 +39,22 @@ namespace addressbook_testing
         }
         public int CompareTo(ContactData other)
         {
-            int r1;
-            int r2;
+            int r1 = FirstName.CompareTo(other.FirstName);
+            int r2 = LastName.CompareTo(other.LastName);
 
             if (Object.ReferenceEquals(other, null))
             {
                 return 1;
             }
-            r1 = FirstName.CompareTo(other.FirstName);
-            r2 = LastName.CompareTo(other.LastName);
-
-            if (r1 == 0)
+            if (r2 == 0)
             { 
-                return r2;
+                return r1;
             }
-            return r1;
+            return r2;
         }
 
-        public string FirstName
-            {
-                get
-                {
-                    return firstName;
-                }
-                set
-                {
-                    firstName = value;
-                }
-            }
-            public string LastName
-            {
-                get
-                {
-                    return lastName;
-                }
-                set
-                {
-                    lastName = value;
-                }
-            }
-        }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Id { get; set; }
+    }
 }
