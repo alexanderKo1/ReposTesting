@@ -68,6 +68,12 @@ namespace addressbook_testing
                 Create(new GroupData("groupTestA", "groupTestB"));
             }
         }
+
+        public int GetGroupsCount()
+        {
+            return driver.FindElements(By.CssSelector("span.group")).Count;
+        }
+
         public bool IsCreated() //Возвращает bool - true, если есть хотя бы одна группа. ДЗ8
         {
             return IsElementPresent(By.XPath("//div[@id='content']/form/span[1]/input"));

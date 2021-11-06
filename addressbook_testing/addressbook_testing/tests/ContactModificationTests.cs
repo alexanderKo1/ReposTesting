@@ -23,6 +23,8 @@ namespace addressbook_testing
 
             app.Contacts.Modify(0, entryData);
 
+            Assert.AreEqual(oldContacts.Count, app.Contacts.GetContactsCount());
+
             List<ContactData> newContacts = app.Contacts.GetContactList();
 
             oldContacts[0].FirstName = entryData.FirstName;

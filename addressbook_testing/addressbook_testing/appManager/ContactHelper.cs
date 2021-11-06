@@ -34,6 +34,12 @@ namespace addressbook_testing
 
             return contacts;
         }
+
+        public int GetContactsCount()
+        {
+            return driver.FindElements(By.XPath("//table[@id='maintable']//tr[@name='entry']")).Count;
+        }
+
         public void ContactMonitor(List<ContactData> Contacts)
         {
             int id = 0;

@@ -20,6 +20,8 @@ namespace addressbook_testing
 
             app.Contacts.Create(entryData);
 
+            Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactsCount());
+
             List<ContactData> newContacts = app.Contacts.GetContactList();
 
             oldContacts.Add(entryData);

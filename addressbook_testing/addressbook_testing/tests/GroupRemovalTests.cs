@@ -20,6 +20,8 @@ namespace addressbook_testing
             //Действие
             app.Groups.Remove(0);
 
+            Assert.AreEqual(oldGroups.Count - 1, app.Groups.GetGroupsCount());
+
             List<GroupData> newGroups = app.Groups.GetGroupList();
 
             oldGroups.RemoveAt(0);

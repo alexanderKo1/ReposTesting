@@ -21,6 +21,8 @@ namespace addressbook_testing
             app.Contacts.Remove(0);
             app.Navigator.WaitFor(By.XPath("//div[@class='left']//input[@value='Delete']"), 1000, 4);
 
+            Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactsCount());
+
             List<ContactData> newContacts = app.Contacts.GetContactList();
 
             //app.Contacts.ContactMonitor(newContacts);

@@ -21,7 +21,10 @@ namespace addressbook_testing
 
             app.Groups.Create(group); //Далее можно в параметре передать созданный объект с уже необходимыми значениями
 
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupsCount());
+
             List<GroupData> newGroups = app.Groups.GetGroupList();
+
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
@@ -37,7 +40,11 @@ namespace addressbook_testing
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
             app.Groups.Create(group);
+
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupsCount());
+
             List<GroupData> newGroups = app.Groups.GetGroupList();
+
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
@@ -52,8 +59,12 @@ namespace addressbook_testing
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-            List<GroupData> newGroups = app.Groups.GetGroupList();
             oldGroups.Add(group);
+
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupsCount());
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
