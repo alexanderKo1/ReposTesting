@@ -8,13 +8,20 @@ namespace addressbook_testing
 {
     public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
-        private string name;
-        private string header;
-        private string footer;
-
         public GroupData(string name)
         {
-            this.name = name;
+            Name = name;
+        }
+        public GroupData(string name, string header)
+        {
+            Name = name;
+            Header = header;
+        }
+        public GroupData(string name, string header, string footer)
+        {
+            Name = name;
+            Header = header;
+            Footer = footer;
         }
         public bool Equals(GroupData other)
         {
@@ -26,7 +33,7 @@ namespace addressbook_testing
             {
                 return true;
             }
-            return name == other.Name;
+            return Name == other.Name;
         }
         public override int GetHashCode()
         {
@@ -44,18 +51,17 @@ namespace addressbook_testing
             }
             return Name.CompareTo(other.Name);
         }
-        public GroupData(string name, string header)
-        {
-            this.name = name;
-            this.header = header;
-        }
-        public GroupData(string name, string header, string footer)
-        {
-            this.name = name;
-            this.header = header;
-            this.footer = footer;
-        }
 
+        public string Name { get; set; }
+        public string Header { get; set; }
+        public string Footer { get; set; }
+        public string Id { get; set; }
+    }
+}
+
+//Notes
+/*
+Свойство:
         public string Name
         {
             get
@@ -67,27 +73,11 @@ namespace addressbook_testing
                 name = value;
             }
         }
-        public string Header
-        {
-            get
-            {
-                return header;
-            }
-            set
-            {
-                header = value;
-            }
-        }
-        public string Footer
-        {
-            get
-            {
-                return footer;
-            }
-            set
-            {
-                footer = value;
-            }
-        }
-    }
-}
+
+или
+
+public string Name { get; set; }
+
+При этом поле name можно удалить, оно создается автоматически.
+
+ */
