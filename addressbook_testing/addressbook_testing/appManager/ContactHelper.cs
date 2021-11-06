@@ -22,17 +22,21 @@ namespace addressbook_testing
             BackToHomePage();
             return this;
         }
+        private List<ContactData> contactCache = null;
         public List<ContactData> GetContactList()
         {
-            List<ContactData> contacts = new List<ContactData>();
-            manager.Navigator.GoToHomePage();
-            ICollection<IWebElement> elements = driver.FindElements(By.XPath("//table[@id='maintable']//tr[@name='entry']"));
-            foreach (IWebElement element in elements)
+            if (contactCache == null)
             {
-                contacts.Add(new ContactData(element.FindElement(By.XPath("td[3]")).Text, element.FindElement(By.XPath("td[2]")).Text));
+                contactCache = new List<ContactData>();
+                //List<ContactData> contacts = new List<ContactData>();
+                manager.Navigator.GoToHomePage();
+                ICollection<IWebElement> elements = driver.FindElements(By.XPath("//table[@id='maintable']//tr[@name='entry']"));
+                foreach (IWebElement element in elements)
+                {
+                    contactCache.Add(new ContactData(element.FindElement(By.XPath("td[3]")).Text, element.FindElement(By.XPath("td[2]")).Text));
+                }
             }
-
-            return contacts;
+            return new List<ContactData>(contactCache);
         }
 
         public int GetContactsCount()
@@ -67,6 +71,7 @@ namespace addressbook_testing
         public ContactHelper Update()
         {
             driver.FindElement(By.Name("update")).Click();
+            contactCache = null;
             return this;
         }
 
@@ -81,6 +86,7 @@ namespace addressbook_testing
             //SelectContactByID(ind);
             SelectContactByIndex(ind);
             RemoveCantact();
+            contactCache = null;
             return this;
         }
         public bool IsCreated() //Возвращает bool - true, если есть хотя бы один контакт. ДЗ8
@@ -119,6 +125,7 @@ namespace addressbook_testing
         public ContactHelper SubmitNewEntry()
         {
             driver.FindElement(By.Name("submit")).Click();
+            contactCache = null;
             return this;
         }
         public ContactHelper BackToHomePage()
