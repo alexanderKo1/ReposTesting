@@ -24,7 +24,7 @@ namespace addressbook_testing
         }
 
         [Test]
-        public void TestContactDetails()
+        public void TestContactDetails() //ДЗ 12
         {
             ContactData fromForm = app.Contacts.GetContactInformationFromEditForm(2);
 
