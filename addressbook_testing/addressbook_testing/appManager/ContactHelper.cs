@@ -46,32 +46,33 @@ namespace addressbook_testing
 
         private string Phones(string hPhone, string mPhone, string wPhone)
         {
-            if (hPhone == null && mPhone == null && wPhone == null)
+            if ((hPhone == null || hPhone == "") && (mPhone == null || mPhone == "") && (wPhone == null || wPhone == ""))
             { 
                 return "";
             }
-            return ("\r\n" + "\r\n" + HPhone(hPhone)
+            return ("\r\n" + "\r\n" + ((HPhone(hPhone)
                 + MPhone(mPhone)
-                + WPhone(wPhone));
+                + WPhone(wPhone)) + "\r\n"));
         }
 
         private string LMails(string em1, string em2, string em3)
         {
-            if (em1 == null && em2 == null && em3 == null)
+            if ((em1 == null || em1 == "") && (em2 == null || em2 == "") && (em3 == null || em3 == ""))
             {
                 return "";
             }
-            return ("\r\n" + NewLine(em1) + NewLine(em2) + NewLine(em3));
+            return ("\r\n" + "\r\n" + (lEmail(em1) 
+                + lEmail(em2) 
+                + lEmail(em3)) + "\r\n");
         }
-        public string NewLine(string eMail)
+        private string lEmail(string eMail)
         {
             if (eMail == null || eMail == "")
             {
                 return "";
             }
-            return eMail;
+            return (eMail.Trim());
         }
-
         private string LAddress(string address)
         {
             if (address == null || address == "")
