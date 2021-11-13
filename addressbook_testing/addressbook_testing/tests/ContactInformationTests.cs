@@ -26,13 +26,11 @@ namespace addressbook_testing
         [Test]
         public void TestContactDetails() //ДЗ 12
         {
-            ContactData fromForm = app.Contacts.GetContactInformationFromEditForm(2);
-
+            ContactData fromForm = app.Contacts.GetContactInformationFromEditForm(0);
             String oneTextFromForm = app.Contacts.GetContactInformationFromEditFormInOneText(fromForm);
-            System.Console.Out.Write(oneTextFromForm);
-
-            String oneTextFromDetails = app.Contacts.GetContactInformationFromDetails(2);
-            System.Console.Out.Write(oneTextFromDetails);
+            //System.Console.Out.Write(oneTextFromForm);
+            String oneTextFromDetails = app.Contacts.GetContactInformationFromDetails(0);
+            //System.Console.Out.Write(oneTextFromDetails);
 
             //Проверка
             Assert.AreEqual(oneTextFromForm, oneTextFromDetails);

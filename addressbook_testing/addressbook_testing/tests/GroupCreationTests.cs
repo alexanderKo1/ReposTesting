@@ -10,13 +10,22 @@ namespace addressbook_testing
     [TestFixture]
     public class GroupCreationTests : AuthTestBase
     {
-        [Test]
-        public void GroupCreationTest()
+        public static IEnumerable<GroupData> RandomGroupDataProvider() 
         {
-            GroupData group = new GroupData("121212"); //Создаем экземпляр, а далее присваиваем переменным значения, используя поля
-            group.Header = "22"; //Так проще понимать, какому полю какое значение мы присвоили.
-            group.Footer = "34";
-
+            List<GroupData> groups = new List<GroupData>();
+            for (int i = 0; i < 5; i++)
+            {
+                groups.Add(new GroupData(GenerateRandomString(10))
+                {
+                    Header = GenerateRandomString(10),
+                    Footer = GenerateRandomString(10)
+                });
+            }
+            return groups;
+        }
+        [Test, TestCaseSource("RandomGroupDataProvider")]
+        public void GroupCreationTest(GroupData group)
+        {
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
             app.Groups.Create(group); //Далее можно в параметре передать созданный объект с уже необходимыми значениями
@@ -26,45 +35,6 @@ namespace addressbook_testing
             List<GroupData> newGroups = app.Groups.GetGroupList();
 
             oldGroups.Add(group);
-            oldGroups.Sort();
-            newGroups.Sort();
-            Assert.AreEqual(oldGroups, newGroups);
-        }
-        [Test]
-        public void EmptyGroupCreationTest()
-        {
-            GroupData group = new GroupData("");
-            group.Header = "";
-            group.Footer = "";
-
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
-
-            app.Groups.Create(group);
-
-            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupsCount());
-
-            List<GroupData> newGroups = app.Groups.GetGroupList();
-
-            oldGroups.Add(group);
-            oldGroups.Sort();
-            newGroups.Sort();
-            Assert.AreEqual(oldGroups, newGroups);
-        }
-        [Test]
-        public void BadNameGroupCreationTest()
-        {
-            GroupData group = new GroupData("а'а");
-            group.Header = "";
-            group.Footer = "";
-
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
-
-            oldGroups.Add(group);
-
-            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupsCount());
-
-            List<GroupData> newGroups = app.Groups.GetGroupList();
-
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
