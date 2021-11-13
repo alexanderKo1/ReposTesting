@@ -14,6 +14,45 @@ namespace addressbook_testing
     {
         public ContactHelper(ApplicationManager manager) : base(manager) { }
 
+        internal ContactData GetContactInformationFromTable(int index)
+        {
+            manager.Navigator.GoToHomePage();
+
+            IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[index].FindElements(By.TagName("td"));
+            
+            string lastName = cells[1].Text;
+            string firstName = cells[2].Text;
+            string address = cells[3].Text;
+            string allPhones = cells[5].Text;
+
+            return new ContactData(firstName, lastName)
+            {
+                Address = address,
+                AllPhones = allPhones
+            };
+        }
+
+        internal ContactData GetContactInformationFromEditForm(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            InitContactModification(index);
+            string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
+            string address = driver.FindElement(By.Name("address")).GetAttribute("value");
+
+            string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
+            string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
+            string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
+
+            return new ContactData(firstName, lastName)
+            {
+                Address = address,
+                HomePhone = homePhone,
+                MobilePhone = mobilePhone,
+                WorkPhone = workPhone
+            };
+        }
+
         public ContactHelper Modify(int v, ContactData entryData) //Метод модификации контакта
         {
             Modify(v);
@@ -68,7 +107,7 @@ namespace addressbook_testing
             for (int i = 0; i < oldContacts.Count; i++)
             {
                 Assert.AreEqual(oldContacts[i].FirstName, newContacts[i].FirstName);
-                Assert.AreEqual(oldContacts[i].LastName, newContacts[i].LastName);
+                Assert.AreEqual(oldContacts[i].SecondName, newContacts[i].SecondName);
             }
         }
         public ContactHelper Update()
@@ -82,6 +121,12 @@ namespace addressbook_testing
         {
             driver.FindElement(By.CssSelector("table#maintable tr:nth-child(" + (v + 2) + ") td.center img[title='Edit']")).Click();
             return this;
+        }
+        public void InitContactModification(int index)
+        {
+            driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"))[7]
+                .FindElement(By.TagName("a")).Click();
         }
 
         public ContactHelper Remove(int ind) //Метод удаления контакта
@@ -139,7 +184,7 @@ namespace addressbook_testing
         public ContactHelper NewEntry(ContactData ed)
         {
             Type(By.Name("firstname"), ed.FirstName);
-            Type(By.Name("lastname"), ed.LastName);
+            Type(By.Name("lastname"), ed.SecondName);
             return this;
         }
     }

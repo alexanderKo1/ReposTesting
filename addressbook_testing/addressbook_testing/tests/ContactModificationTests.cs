@@ -17,7 +17,7 @@ namespace addressbook_testing
             
             //Действие
             ContactData entryData = new ContactData("Владимир");
-            entryData.LastName = "Белов";
+            entryData.SecondName = "Белов";
 
             List<ContactData> oldContacts = app.Contacts.GetContactList();
             ContactData oldData = oldContacts[0];
@@ -29,7 +29,7 @@ namespace addressbook_testing
             List<ContactData> newContacts = app.Contacts.GetContactList();
 
             oldContacts[0].FirstName = entryData.FirstName;
-            oldContacts[0].LastName = entryData.LastName;
+            oldContacts[0].SecondName = entryData.SecondName;
             oldContacts.Sort();
             newContacts.Sort();
 
@@ -43,7 +43,7 @@ namespace addressbook_testing
                 if (contacts.Id == oldData.Id)
                 {
                     //Assert.AreEqual(entryData.FirstName, contacts.FirstName);
-                    Assert.AreEqual(entryData.LastName, contacts.LastName);
+                    Assert.AreEqual(entryData.SecondName, contacts.SecondName);
                 }
             }            
         }
