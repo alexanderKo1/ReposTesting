@@ -39,14 +39,48 @@ namespace addressbook_testing
         {
             return (
                 contact.FirstName + " " + contact.SecondName
-                + "\r\n" + contact.Address
-                + "\r\n" + "\r\n"
-                + HPhone(contact.HomePhone)
-                + MPhone(contact.MobilePhone)
-                + WPhone(contact.WorkPhone)
-                + "\r\n"
-                + contact.AllMails);
+                + LAddress(contact.Address)
+                + Phones(contact.HomePhone, contact.MobilePhone, contact.WorkPhone)
+                + LMails(contact.EMail1, contact.EMail2, contact.EMail3)).Trim().Replace("\r\n", "");
         }
+
+        private string Phones(string hPhone, string mPhone, string wPhone)
+        {
+            if (hPhone == null && mPhone == null && wPhone == null)
+            { 
+                return "";
+            }
+            return ("\r\n" + "\r\n" + HPhone(hPhone)
+                + MPhone(mPhone)
+                + WPhone(wPhone));
+        }
+
+        private string LMails(string em1, string em2, string em3)
+        {
+            if (em1 == null && em2 == null && em3 == null)
+            {
+                return "";
+            }
+            return ("\r\n" + NewLine(em1) + NewLine(em2) + NewLine(em3));
+        }
+        public string NewLine(string eMail)
+        {
+            if (eMail == null || eMail == "")
+            {
+                return "";
+            }
+            return eMail;
+        }
+
+        private string LAddress(string address)
+        {
+            if (address == null || address == "")
+            {
+                return "";
+            }
+            return ("\r\n" + address);
+        }
+
         private string WPhone(string wPhone)
         {
             if (wPhone == null || wPhone == "")
@@ -83,8 +117,8 @@ namespace addressbook_testing
 
         private string GettingInformation()
         {
-            string textLine = driver.FindElement(By.CssSelector("div#content")).Text;
-            return textLine;
+            string textLine = driver.FindElement(By.CssSelector("div#content")).Text.Replace("\r\n", "");
+            return textLine.Trim();
         }
 
         internal ContactData GetContactInformationFromEditForm(int index)

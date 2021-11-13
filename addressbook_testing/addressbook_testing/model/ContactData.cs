@@ -106,7 +106,7 @@ namespace addressbook_testing
             }
         }
 
-        private string NewLine(string eMail)
+        public string NewLine(string eMail)
         {
             if (eMail == null || eMail == "")
             {
