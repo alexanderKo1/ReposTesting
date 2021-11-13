@@ -35,6 +35,58 @@ namespace addressbook_testing
             };
         }
 
+        public string GetContactInformationFromEditFormInOneText(ContactData contact)
+        {
+            return (
+                contact.FirstName + " " + contact.SecondName
+                + "\r\n" + contact.Address
+                + "\r\n" + "\r\n"
+                + HPhone(contact.HomePhone)
+                + MPhone(contact.MobilePhone)
+                + WPhone(contact.WorkPhone)
+                + "\r\n"
+                + contact.AllMails);
+        }
+        private string WPhone(string wPhone)
+        {
+            if (wPhone == null || wPhone == "")
+            {
+                return "";
+            }
+            return ("W: " + wPhone.Trim() + "\r\n");
+        }
+
+        private string MPhone(string mPhone)
+        {
+            if (mPhone == null || mPhone == "")
+            {
+                return "";
+            }
+            return ("M: " + mPhone.Trim() + "\r\n");
+        }
+
+        private string HPhone(string hPhone)
+        {
+            if (hPhone == null || hPhone == "")
+            {
+                return "";
+            }
+            return ("H: " + hPhone.Trim() + "\r\n");
+        }
+
+        public string GetContactInformationFromDetails(int v)
+        {
+            manager.Navigator.GoToHomePage();
+            InitGettingContactDetails(v);
+            return GettingInformation();
+        }
+
+        private string GettingInformation()
+        {
+            string textLine = driver.FindElement(By.CssSelector("div#content")).Text;
+            return textLine;
+        }
+
         internal ContactData GetContactInformationFromEditForm(int index)
         {
             manager.Navigator.GoToHomePage();
@@ -136,6 +188,12 @@ namespace addressbook_testing
         {
             driver.FindElements(By.Name("entry"))[index]
                 .FindElements(By.TagName("td"))[7]
+                .FindElement(By.TagName("a")).Click();
+        }
+        public void InitGettingContactDetails(int index)
+        {
+            driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"))[6]
                 .FindElement(By.TagName("a")).Click();
         }
 
