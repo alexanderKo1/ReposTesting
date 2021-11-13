@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace addressbook_testing
@@ -9,6 +10,7 @@ namespace addressbook_testing
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         private string allPhones;
+        //private string address;
 
         public ContactData(string firstName)
         {
@@ -88,7 +90,10 @@ namespace addressbook_testing
             {
                 return "";
             }
-            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+            return Regex.Replace(phone, "[- ()]", "") + "\r\n";
+
+            //phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+            //Regex.Replace(phone, "[ -()]", "") + "\r\n";
         }
     }
 }
