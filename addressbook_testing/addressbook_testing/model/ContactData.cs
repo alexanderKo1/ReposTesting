@@ -10,6 +10,7 @@ namespace addressbook_testing
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         private string allPhones;
+        private string allMails;
         //private string address;
 
         public ContactData(string firstName)
@@ -64,6 +65,9 @@ namespace addressbook_testing
         public string Address { get; set; }
         public string HomePhone { get; set; }
         public string MobilePhone { get; set; }
+        public string EMail1 { get; set; }
+        public string EMail2 { get; set; }
+        public string EMail3 { get; set; }
         public string WorkPhone { get; set; }
         public string AllPhones 
         {
@@ -82,6 +86,33 @@ namespace addressbook_testing
             {
                 allPhones = value;
             }
+        }
+        public string AllMails
+        {
+            get
+            {
+                if (allMails != null)
+                {
+                    return allMails;
+                }
+                else
+                {
+                    return NewLine(EMail1) + NewLine(EMail2) + NewLine(EMail3).Trim();
+                }
+            }
+            set
+            {
+                allMails = value;
+            }
+        }
+
+        private string NewLine(string eMail)
+        {
+            if (eMail == null || eMail == "")
+            {
+                return "";
+            }
+            return eMail + "\r\n";
         }
 
         private string CleanUp(string phone)

@@ -25,11 +25,13 @@ namespace addressbook_testing
             string firstName = cells[2].Text;
             string address = cells[3].Text;
             string allPhones = cells[5].Text;
+            string allMails = cells[4].Text;
 
             return new ContactData(firstName, lastName)
             {
                 Address = address,
-                AllPhones = allPhones
+                AllPhones = allPhones,
+                AllMails = allMails
             };
         }
 
@@ -45,12 +47,19 @@ namespace addressbook_testing
             string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
             string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
 
+            string eMail1 = driver.FindElement(By.Name("email")).GetAttribute("value");
+            string eMail2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
+            string eMail3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
+
             return new ContactData(firstName, lastName)
             {
                 Address = address,
                 HomePhone = homePhone,
                 MobilePhone = mobilePhone,
-                WorkPhone = workPhone
+                WorkPhone = workPhone,
+                EMail1 = eMail1,
+                EMail2 = eMail2,
+                EMail3 = eMail3
             };
         }
 
