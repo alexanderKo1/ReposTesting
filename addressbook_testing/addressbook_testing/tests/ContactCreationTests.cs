@@ -27,13 +27,13 @@ namespace addressbook_testing
             }
             return contacts;
         }
-        public static IEnumerable<ContactData> ContactDataFromXmlFile()
+        public static IEnumerable<ContactData> ContactDataFromXmlFile() //ДЗ 15: Чтение из XML
         {
             return (List<ContactData>)
                 new XmlSerializer(typeof(List<ContactData>))
                 .Deserialize(new StreamReader(@"contacts.xml"));
         }
-        public static IEnumerable<ContactData> ContactDataFromJsonFile()
+        public static IEnumerable<ContactData> ContactDataFromJsonFile() //ДЗ 15: Чтение из JSon
         {
             return JsonConvert.DeserializeObject<List<ContactData>>
                 (File.ReadAllText(@"contacts.json"));
@@ -79,7 +79,7 @@ namespace addressbook_testing
         }
         // DATADRIVEN, END
 
-        [Test, TestCaseSource("ContactDataFromExcelFile")]
+        [Test, TestCaseSource("ContactDataFromXmlFile")]
         public void ContactCreationTest(ContactData entryData)
         {
             List<ContactData> oldContacts = app.Contacts.GetContactList();
