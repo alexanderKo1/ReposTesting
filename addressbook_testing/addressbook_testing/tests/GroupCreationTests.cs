@@ -7,12 +7,14 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using System.Xml;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace addressbook_testing
 {
     [TestFixture]
     public class GroupCreationTests : AuthTestBase
     {
+        // DATADRIVEN, BEGIN
         public static IEnumerable<GroupData> RandomGroupDataProvider() 
         {
             List<GroupData> groups = new List<GroupData>();
@@ -48,8 +50,15 @@ namespace addressbook_testing
                 new XmlSerializer(typeof(List<GroupData>))
                 .Deserialize(new StreamReader(@"groups.xml"));
         }
+        public static IEnumerable<GroupData> GroupDataFromJsonFile()
+        {
+            return JsonConvert.DeserializeObject<List<GroupData>>
+                (File.ReadAllText(@"groups.json"));
+        }
 
-        [Test, TestCaseSource("GroupDataFromXmlFile")]
+        // DATADRIVEN, END
+
+        [Test, TestCaseSource("GroupDataFromJsonFile")]
         public void GroupCreationTest(GroupData group)
         {
             List<GroupData> oldGroups = app.Groups.GetGroupList();
