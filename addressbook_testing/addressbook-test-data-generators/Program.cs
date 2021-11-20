@@ -5,6 +5,7 @@ using addressbook_testing;
 using System.Xml;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace addressbook_test_data_generators
 {
@@ -13,7 +14,7 @@ namespace addressbook_test_data_generators
         static void Main(string[] args)
         {
             int count = Convert.ToInt32(args[0]);
-            StreamWriter writer = new StreamWriter(args[1]);
+            string fileName = args[1];
             string format = args[2];
 
             List<GroupData> groups = new List<GroupData>();
@@ -26,23 +27,41 @@ namespace addressbook_test_data_generators
                     Footer = TestBase.GenerateRandomString(10)
                 });
             }
-            if (format == "csv")
+            if (format == "excel")
             {
-                writeGroupsToCsvFile(groups, writer);
+                writeGroupsToExcelFile(groups, fileName);
             }
-            else if (format == "xml")
+            else
             {
-                writeGroupsToXmlFile(groups, writer);
+                StreamWriter writer = new StreamWriter(fileName);
+
+                if (format == "csv")
+                {
+                    writeGroupsToCsvFile(groups, writer);
+                }
+                else if (format == "xml")
+                {
+                    writeGroupsToXmlFile(groups, writer);
+                }
+                else if (format == "json")
+                {
+                    writeGroupsToJsonFile(groups, writer);
+                }
+                else
+                {
+                    System.Console.Out.Write("Неопознанный формат " + format);
+                }
+                writer.Close();
             }
-            else if (format == "json")
-            {
-                writeGroupsToJsonFile(groups, writer);
-            }
-            else 
-            {
-                System.Console.Out.Write("Неопознанный формат " + format);
-            }
-            writer.Close();
+        }
+
+        static void writeGroupsToExcelFile(List<GroupData> groups, string fileName)
+        {
+            Excel.Application app = new Excel.Application();
+            app.Visible = true;
+            Excel.Workbook wb = app.Workbooks.Add();
+            Excel.Worksheet sheet = wb.ActiveSheet;
+            sheet.Cells[1, 1] = "test";
         }
 
         static void writeGroupsToCsvFile(List<GroupData> groups, StreamWriter writer)
