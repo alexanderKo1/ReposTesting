@@ -16,7 +16,7 @@ namespace addressbook_test_data_generators
             int count = Convert.ToInt32(args[0]); //lines
             string fileName = args[1]; //.csv, .json, .xml, .xlsx
             string format = args[2]; //csv, json, xml, excel
-            string type = args[3]; //groups, contacts
+            string type = args[3]; //groups, contacts 
 
             List<GroupData> groups = new List<GroupData>();
             List<ContactData> contacts = new List<ContactData>();
@@ -58,7 +58,7 @@ namespace addressbook_test_data_generators
                     writer.Close();
                 }
             }
-            else if (type == "contacts")
+            else if (type == "contacts") //ДЗ 14: Сделал так, чтобы аргументом принимался тип groups или contacts 
             {
                 for (int i = 0; i < count; i++)
                 {
