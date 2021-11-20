@@ -12,7 +12,9 @@ namespace addressbook_testing
         private string allPhones;
         private string allMails;
         //private string address;
-
+        public ContactData()
+        {
+        }
         public ContactData(string firstName)
         {
             FirstName = firstName;
