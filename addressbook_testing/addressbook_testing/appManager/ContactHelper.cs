@@ -35,6 +35,24 @@ namespace addressbook_testing
             };
         }
 
+        public void RemoveAContact(GroupData group, int index)
+        {
+            manager.Navigator.GoToHomePage();
+            SelectGroup(group);
+            SelectContactByIndex(index);
+            AcceptRemoving();
+        }
+
+        private void SelectGroup(GroupData group)
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText(group.Name);
+        }
+
+        private void AcceptRemoving()
+        {
+            driver.FindElement(By.Name("remove")).Click(); 
+        }
+
         public void AddContactToGroup(ContactData contact, GroupData group)
         {
             manager.Navigator.GoToHomePage();
@@ -60,7 +78,6 @@ namespace addressbook_testing
         {
             driver.FindElement(By.Id(contactId)).Click();
         }
-
         private void ClearGroupFilter()
         {
             new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
