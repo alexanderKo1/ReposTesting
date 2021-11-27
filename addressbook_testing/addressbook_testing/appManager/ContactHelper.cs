@@ -55,6 +55,14 @@ namespace addressbook_testing
                 + WPhone(wPhone)) + "\r\n"));
         }
 
+        public ContactHelper RemoveFrom(ContactData toBeRemoved)
+        {
+            SelectContactByID(toBeRemoved.Id);
+            RemoveCantact();
+            contactCache = null;
+            return this;
+        }
+
         private string LMails(string em1, string em2, string em3)
         {
             if ((em1 == null || em1 == "") && (em2 == null || em2 == "") && (em3 == null || em3 == ""))
@@ -258,9 +266,9 @@ namespace addressbook_testing
             return this;
         }
 
-        public ContactHelper SelectContactByID(int index)
+        public ContactHelper SelectContactByID(string contactId)
         {
-            driver.FindElement(By.XPath("//table[@id='maintable']//input[@id=" + index + "]")).Click();
+            driver.FindElement(By.XPath("//table[@id='maintable']//input[@id=" + contactId + "]")).Click();
             return this;
         }
 
