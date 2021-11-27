@@ -79,7 +79,7 @@ namespace addressbook_testing
         }
         // DATADRIVEN, END
 
-        [Test, TestCaseSource("ContactDataFromXmlFile")]
+        [Test, TestCaseSource("ContactDataFromCsvFile")]
         public void ContactCreationTest(ContactData entryData)
         {
             List<ContactData> oldContacts = app.Contacts.GetContactList();
@@ -109,7 +109,7 @@ namespace addressbook_testing
             end = DateTime.Now;
             System.Console.Out.WriteLine(end.Subtract(start));
         }
-        /*
+
         [Test]
         public void ContactCreationTestNormal()
         {
@@ -129,6 +129,5 @@ namespace addressbook_testing
 
             Assert.AreEqual(oldContacts, newContacts); // ДЗ 9. Проверка, совпадает ли FirstName и LastName
         }
-        */
     }
 }

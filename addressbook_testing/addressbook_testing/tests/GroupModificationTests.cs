@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace addressbook_testing
 {
     [TestFixture]
-    class GroupModificationTests : AuthTestBase
+    class GroupModificationTests : GroupTestBase
     {
         [Test]
         public void GroupModificationTest() // Тест модификации группы ДЗ 7 
@@ -30,6 +30,39 @@ namespace addressbook_testing
             Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupsCount());
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups[0].Name = newData.Name;
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+
+            foreach (GroupData group in newGroups)
+            {
+                if (group.Id == oldData.Id)
+                {
+                    Assert.AreEqual(newData.Name, group.Name);
+                }
+            }
+        }
+        [Test]
+        public void GroupModificationTestDb() //GroupData.GetAll
+        {
+            //Предусловия
+            app.Groups.GroupCreationCondition();  //Вызов метода проверки, есть ли хотя бы одна группа. ДЗ8
+
+            //Действие
+            GroupData newData = new GroupData("2");
+            newData.Header = "12";
+            newData.Footer = "333";
+
+            List<GroupData> oldGroups = GroupData.GetAll();
+
+            GroupData oldData = oldGroups[0];
+
+            app.Groups.ModifyById(oldData, newData);
+
+            Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupsCount());
+
+            List<GroupData> newGroups = GroupData.GetAll();
             oldGroups[0].Name = newData.Name;
             oldGroups.Sort();
             newGroups.Sort();

@@ -69,6 +69,16 @@ namespace addressbook_testing
             ReturnToGroupsPage();
             return this;
         }
+        public GroupHelper ModifyById(GroupData toBeModified, GroupData newData) //Метод модификации группы
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(toBeModified.Id);
+            InitGroupModification();
+            FillGroupForm(newData);
+            SubmitGroupModification();
+            ReturnToGroupsPage();
+            return this;
+        }
 
         public GroupHelper Remove(int index)
         {

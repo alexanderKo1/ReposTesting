@@ -14,7 +14,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 namespace addressbook_testing
 {
     [TestFixture]
-    public class GroupCreationTests : AuthTestBase
+    public class GroupCreationTests : GroupTestBase
     {
         // DATADRIVEN, BEGIN
         public static IEnumerable<GroupData> RandomGroupDataProvider() 
@@ -80,7 +80,7 @@ namespace addressbook_testing
         }
         // DATADRIVEN, END
 
-        [Test, TestCaseSource("GroupDataFromExcelFile")]
+        [Test, TestCaseSource("GroupDataFromJsonFile")]
         public void GroupCreationTest(GroupData group)
         {
             List<GroupData> oldGroups = app.Groups.GetGroupList();
@@ -96,6 +96,7 @@ namespace addressbook_testing
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
         }
+
         [Test]
         public void TestDBConnectivity()
         {
@@ -109,7 +110,8 @@ namespace addressbook_testing
             end = DateTime.Now;
             System.Console.Out.WriteLine(end.Subtract(start));
         }
-        [Test, TestCaseSource("GroupDataFromExcelFile")]
+
+        [Test, TestCaseSource("GroupDataFromJsonFile")]
         public void GroupCreationTestDb(GroupData group)
         {
             List<GroupData> oldGroups = GroupData.GetAll();
