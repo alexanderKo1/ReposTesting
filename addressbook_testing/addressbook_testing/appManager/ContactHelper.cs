@@ -275,6 +275,14 @@ namespace addressbook_testing
             driver.FindElement(By.XPath("//div[@class='left']//input[@value='Delete']")).Click();
             //manager.Navigator.WaitFor(By.XPath("//div[@class='left']//input[@value='Delete']"), 1000, 4);
             driver.SwitchTo().Alert().Accept();
+            manager.Navigator.WaitFor(By.XPath("//div[@class='left']//input[@value='Delete']"), 1000, 4);
+            return this;
+        }
+
+        public ContactHelper RemoveContactMethodTwo()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            driver.FindElement(By.CssSelector("div.msgbox"));
             return this;
         }
 

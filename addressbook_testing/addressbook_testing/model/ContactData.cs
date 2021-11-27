@@ -61,25 +61,26 @@ namespace addressbook_testing
             }
             return r2;
         }
+
+        [Column(Name = "id"), PrimaryKey]
+        public string Id { get; set; }
         [Column(Name = "firstname")]
         public string FirstName { get; set; }
         [Column(Name = "lastname")]
         public string SecondName { get; set; }
-        [Column(Name = "id"), PrimaryKey, Identity]
-        public string Id { get; set; }
-        [Column(Name = "address")]
+        //[Column(Name = "address")]
         public string Address { get; set; }
-        [Column(Name = "home")]
+        //[Column(Name = "home")]
         public string HomePhone { get; set; }
-        [Column(Name = "mobile")]
+        //[Column(Name = "mobile")]
         public string MobilePhone { get; set; }
-        [Column(Name = "email")]
+        //[Column(Name = "email")]
         public string EMail1 { get; set; }
-        [Column(Name = "email2")]
+        //[Column(Name = "email2")]
         public string EMail2 { get; set; }
-        [Column(Name = "email3")]
+        //[Column(Name = "email3")]
         public string EMail3 { get; set; }
-        [Column(Name = "work")]
+        //[Column(Name = "work")]
         public string WorkPhone { get; set; }
         public string AllPhones 
         {
