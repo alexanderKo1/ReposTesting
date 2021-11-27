@@ -12,7 +12,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 namespace addressbook_testing
 {
     [TestFixture]
-    public class ContactCreationTests : AuthTestBase
+    public class ContactCreationTests : ContactTestBase
     {
         // DATADRIVEN, BEGIN
         public static IEnumerable<ContactData> RandomContactDataProvider()

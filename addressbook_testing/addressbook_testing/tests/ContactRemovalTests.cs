@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace addressbook_testing
 {
-    class ContactRemovalTests : AuthTestBase
+    class ContactRemovalTests : ContactTestBase
     {
         [Test]
         public void ContactRemovalTest() //Тест удаления контакта ДЗ 7
@@ -41,7 +41,7 @@ namespace addressbook_testing
         }
 
         [Test]
-        public void ContactRemovalTestDb() //Тест удаления контакта ДЗ 7
+        public void ContactRemovalTestDb() 
         {
             //Предусловия
             app.Contacts.ContactCreationCondition(); //Вызов метода проверки, есть ли хотя бы один контакт. ДЗ8

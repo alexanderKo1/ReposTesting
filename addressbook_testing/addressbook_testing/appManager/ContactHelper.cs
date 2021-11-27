@@ -73,6 +73,7 @@ namespace addressbook_testing
                 + lEmail(em2) 
                 + lEmail(em3)) + "\r\n");
         }
+
         private string lEmail(string eMail)
         {
             if (eMail == null || eMail == "")
@@ -166,6 +167,16 @@ namespace addressbook_testing
             BackToHomePage();
             return this;
         }
+        public ContactHelper ModifyById(ContactData oldData, ContactData entryData)
+        {
+            manager.Navigator.WaitFor(By.XPath("//div[@class='left']//input[@value='Delete']"), 1000, 4);
+            SelectContactByIdAndClick(oldData.Id);
+            NewEntry(entryData);
+            Update();
+            BackToHomePage();
+            return this;
+        }
+
         private List<ContactData> contactCache = null;
         public List<ContactData> GetContactList()
         {
@@ -269,6 +280,14 @@ namespace addressbook_testing
         public ContactHelper SelectContactByID(string contactId)
         {
             driver.FindElement(By.XPath("//table[@id='maintable']//input[@id=" + contactId + "]")).Click();
+            return this;
+        }
+        public ContactHelper SelectContactByIdAndClick(string contactId)
+        {
+            /*
+            driver.FindElement(By.XPath("//table[@id='maintable']//input[@id=" + contactId + "]"))
+                .FindElement(By.XPath("//td[@class='center']//img[@title='Edit']")).Click();
+            */
             return this;
         }
 
