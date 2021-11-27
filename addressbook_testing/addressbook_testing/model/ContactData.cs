@@ -119,6 +119,9 @@ namespace addressbook_testing
             }
         }
 
+        [Column(Name = "deprecated")]
+        public string Deprecated { get; set; }
+
         public string NewLine(string eMail)
         {
             if (eMail == null || eMail == "")
@@ -143,7 +146,7 @@ namespace addressbook_testing
         {
             using (AddressbookDB db = new AddressbookDB())
             {
-                return (from c in db.Contacts select c).ToList();
+                return (from c in db.Contacts.Where(x => x.Deprecated == "00.00.0000 0:00:00") select c).ToList();
             }
         }
     }

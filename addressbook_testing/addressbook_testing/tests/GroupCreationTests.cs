@@ -100,11 +100,18 @@ namespace addressbook_testing
         [Test]
         public void TestDBConnectivity()
         {
+            foreach (ContactData contact in ContactData.GetAllContacts())
+            {
+                System.Console.Out.WriteLine(contact.Deprecated);
+            }
+            System.Console.Out.WriteLine("End");
+            /*
             foreach (ContactData contact in GroupData.GetAll()[0].GettingContacts()) 
             {
                 System.Console.Out.WriteLine(contact);
             }
             System.Console.Out.WriteLine("End");
+            */
         }
 
         [Test, TestCaseSource("GroupDataFromJsonFile")]
