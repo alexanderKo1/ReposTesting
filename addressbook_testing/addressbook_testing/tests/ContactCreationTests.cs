@@ -129,5 +129,24 @@ namespace addressbook_testing
 
             Assert.AreEqual(oldContacts, newContacts); // ДЗ 9. Проверка, совпадает ли FirstName и LastName
         }
+
+        [Test, TestCaseSource("ContactDataFromCsvFile")]
+        public void ContactCreationTestDb(ContactData entryData)
+        {
+            List<ContactData> oldContacts = ContactData.GetAllContacts();
+
+            app.Contacts.Create(entryData);
+
+            Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactsCount());
+
+            List<ContactData> newContacts = ContactData.GetAllContacts();
+
+            oldContacts.Add(entryData);
+            oldContacts.Sort();
+            newContacts.Sort();
+
+            Assert.AreEqual(oldContacts, newContacts); // ДЗ 9. Проверка, совпадает ли FirstName и LastName
+        }
+
     }
 }

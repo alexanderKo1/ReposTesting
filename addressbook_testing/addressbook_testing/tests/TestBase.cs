@@ -11,7 +11,7 @@ namespace addressbook_testing
     public class TestBase
     {
         public static bool PERFOM_LONG_UI_CHECKS = true;
-        public static bool CONTACTS_PERFOM_LONG_UI_CHECKS = false;
+        public static bool CONTACTS_PERFOM_LONG_UI_CHECKS = true;
         protected ApplicationManager app;
 
         [SetUp]
