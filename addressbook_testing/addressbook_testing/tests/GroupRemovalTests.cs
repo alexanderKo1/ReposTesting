@@ -15,16 +15,18 @@ namespace addressbook_testing
         {
             //Предусловия
             app.Groups.GroupCreationCondition();  //Вызов метода проверки, есть ли хотя бы одна группа. ДЗ8
-            List<GroupData> oldGroups = app.Groups.GetGroupList(); //Прочитать старый список групп
+            List<GroupData> oldGroups = GroupData.GetAll();
+            GroupData toBeRemoved = oldGroups[0];
 
             //Действие
-            app.Groups.Remove(0);
+            app.Groups.RemoveFrom(toBeRemoved);
+            //app.Groups.Remove(toBeRemoved);
 
             Assert.AreEqual(oldGroups.Count - 1, app.Groups.GetGroupsCount());
 
-            List<GroupData> newGroups = app.Groups.GetGroupList();
+            List<GroupData> newGroups = GroupData.GetAll();
 
-            GroupData toBeRemoved = oldGroups[0];
+            //GroupData toBeRemoved = oldGroups[0];
 
             oldGroups.RemoveAt(0);
 

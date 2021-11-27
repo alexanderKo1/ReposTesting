@@ -78,6 +78,14 @@ namespace addressbook_testing
             ReturnToGroupsPage();
             return this;
         }
+        public GroupHelper RemoveFrom(GroupData group)
+        {
+            manager.Navigator.GoToGroupsPage(); //Вызвать методы помощников можно с помощью менеджера
+            SelectGroup(group.Id);
+            RemoveGroup();
+            ReturnToGroupsPage();
+            return this;
+        }
         public void GroupCreationCondition()  //Метод проверки, есть ли хотя бы одна группа. ДЗ8 
         {
             manager.Navigator.GoToGroupsPage();
@@ -112,6 +120,11 @@ namespace addressbook_testing
         public GroupHelper SelectGroup(int index)
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/span[" + (index+1) + "]/input")).Click();
+            return this;
+        }
+        public GroupHelper SelectGroup(string id)
+        {
+            driver.FindElement(By.XPath("//input[@name='selected[]' and @value='" + id + "']")).Click();
             return this;
         }
         //GroupCreationTests

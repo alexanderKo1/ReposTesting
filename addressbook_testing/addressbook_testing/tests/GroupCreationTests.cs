@@ -109,5 +109,21 @@ namespace addressbook_testing
             end = DateTime.Now;
             System.Console.Out.WriteLine(end.Subtract(start));
         }
+        [Test, TestCaseSource("GroupDataFromExcelFile")]
+        public void GroupCreationTestDb(GroupData group)
+        {
+            List<GroupData> oldGroups = GroupData.GetAll();
+
+            app.Groups.Create(group); //Далее можно в параметре передать созданный объект с уже необходимыми значениями
+
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupsCount());
+
+            List<GroupData> newGroups = GroupData.GetAll();
+
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+        }
     }
 }
