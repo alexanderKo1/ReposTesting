@@ -252,7 +252,7 @@ namespace addressbook_testing
         }
 
         public ContactHelper Remove(int ind) //Метод удаления контакта
-        { 
+        {
             //SelectContactByID(ind);
             SelectContactByIndex(ind);
             RemoveCantact();
@@ -273,6 +273,7 @@ namespace addressbook_testing
         public ContactHelper RemoveCantact()
         {
             driver.FindElement(By.XPath("//div[@class='left']//input[@value='Delete']")).Click();
+            //manager.Navigator.WaitFor(By.XPath("//div[@class='left']//input[@value='Delete']"), 1000, 4);
             driver.SwitchTo().Alert().Accept();
             return this;
         }
@@ -284,10 +285,8 @@ namespace addressbook_testing
         }
         public ContactHelper SelectContactByIdAndClick(string contactId)
         {
-            /*
-            driver.FindElement(By.XPath("//table[@id='maintable']//input[@id=" + contactId + "]"))
-                .FindElement(By.XPath("//td[@class='center']//img[@title='Edit']")).Click();
-            */
+            driver.FindElement(By.XPath("//table[@id='maintable']//input[@id=" + contactId + "]/../..//img[@title='Edit']")).Click();
+            //ТЕСТ, driver.FindElement(By.XPath("//table[@id='maintable']//input[@id='413']/../..//img[@title='Edit']")).Click();
             return this;
         }
 

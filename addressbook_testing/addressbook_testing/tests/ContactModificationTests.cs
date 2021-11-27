@@ -49,11 +49,11 @@ namespace addressbook_testing
             }            
         }
 
-        //[Test]
+        [Test]
         public void ContactModificationTestDb()
         {
             //Предусловия
-            app.Contacts.ContactCreationCondition(); //Вызов метода проверки, есть ли хотя бы один контакт. ДЗ8
+            app.Contacts.ContactCreationCondition();
 
             //Действие
             ContactData entryData = new ContactData("Владимир");
