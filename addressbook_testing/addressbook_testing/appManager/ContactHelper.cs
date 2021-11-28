@@ -41,6 +41,7 @@ namespace addressbook_testing
             SelectGroup(group);
             SelectContactByID(contact.Id);
             AcceptRemoving();
+            manager.Navigator.GoToHomePage();
         }
 
         private void SelectGroup(GroupData group)

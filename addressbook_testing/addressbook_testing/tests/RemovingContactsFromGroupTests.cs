@@ -10,7 +10,7 @@ namespace addressbook_testing
     public class RemovingContactsFromGroupTests : AuthTestBase
     {
         [Test]
-        public void TestRemovingContactFromGroup()
+        public void TestRemovingContactFromGroup() //ДЗ 17
         {
             GroupData group = GroupData.GetAll()[0];
             List<ContactData> oldList = group.GettingContacts(); //Получить список контактов в группе
@@ -21,6 +21,7 @@ namespace addressbook_testing
 
             List<ContactData> newList = group.GettingContacts(); ///получить новый список контактов
             app.Contacts.ContactMonitor(newList);
+
             oldList.RemoveAt(0); //удалить контакт из старого списка
             app.Contacts.ContactMonitor(oldList);
 
