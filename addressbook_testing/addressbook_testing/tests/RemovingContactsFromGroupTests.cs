@@ -12,7 +12,12 @@ namespace addressbook_testing
         [Test]
         public void TestRemovingContactFromGroup() //ДЗ 17
         {
-            GroupData group = GroupData.GetAll()[1];
+            GroupData group = GroupData.GetAll()[0];
+            System.Console.Out.WriteLine("Название группы: " + group.Name);
+
+            List<ContactData> conditionCounting = group.GettingContacts();
+            app.Contacts.RemovingCondition(conditionCounting, group);
+
             List<ContactData> oldList = group.GettingContacts(); //Получить список контактов в группе
 
             app.Contacts.ContactMonitor(oldList);

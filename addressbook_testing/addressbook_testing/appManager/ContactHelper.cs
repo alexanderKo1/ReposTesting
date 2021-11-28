@@ -35,6 +35,16 @@ namespace addressbook_testing
             };
         }
 
+        internal void RemovingCondition(List<ContactData> conditionCounting, GroupData group)
+        {
+            if (conditionCounting.Count == 0)
+            {
+                ContactData contact = ContactData.GetAllContacts().First();
+                AddContactToGroup(contact, group);
+                System.Console.Out.WriteLine("БЫЛ добавлен контакт в группу");
+            }
+        }
+
         public void RemoveAContact(GroupData group, ContactData contact)
         {
             manager.Navigator.GoToHomePage(); 
