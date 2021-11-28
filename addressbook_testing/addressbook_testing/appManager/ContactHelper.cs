@@ -35,11 +35,11 @@ namespace addressbook_testing
             };
         }
 
-        public void RemoveAContact(GroupData group, int index)
+        public void RemoveAContact(GroupData group, ContactData contact)
         {
-            manager.Navigator.GoToHomePage();
+            manager.Navigator.GoToHomePage(); 
             SelectGroup(group);
-            SelectContactByIndex(index);
+            SelectContactByID(contact.Id);
             AcceptRemoving();
         }
 

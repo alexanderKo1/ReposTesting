@@ -16,14 +16,15 @@ namespace addressbook_testing
             List<ContactData> oldList = group.GettingContacts(); //Получить список контактов в группе
 
             app.Contacts.ContactMonitor(oldList);
-            
-                app.Contacts.RemoveAContact(group, 0); //Удалить контакт в группе
+
+            app.Contacts.RemoveAContact(group, oldList[0]); //Удалить контакт в группе
 
             List<ContactData> newList = group.GettingContacts(); ///получить новый список контактов
             app.Contacts.ContactMonitor(newList);
             oldList.RemoveAt(0); //удалить контакт из старого списка
             app.Contacts.ContactMonitor(oldList);
-            Assert.AreEqual(oldList, newList); //сравнить старые и новые контакты в группе
+
+            Assert.AreEqual(oldList, newList); //сравнить старые и новые контакты в группе 
         }
     }
 }
