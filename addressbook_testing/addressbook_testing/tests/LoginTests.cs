@@ -24,7 +24,7 @@ namespace addressbook_testing
             Assert.IsTrue(app.Auth.IsLoggedIn(account));
         }
 
-        [Test]
+        //[Test]
         public void LoginWithInvalidCredentials()
         {
             //подготовка 
