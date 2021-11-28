@@ -12,7 +12,7 @@ namespace addressbook_testing
     {
         //*** ПЕРЕКЛЮЧАТЕЛИ
         public static bool PERFOM_LONG_UI_CHECKS = true;
-        public static bool CONTACTS_PERFOM_LONG_UI_CHECKS = true;
+        public static bool CONTACTS_PERFOM_LONG_UI_CHECKS = true; // ДЗ 16
         //***
 
         protected ApplicationManager app;

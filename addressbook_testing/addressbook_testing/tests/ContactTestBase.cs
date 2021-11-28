@@ -10,7 +10,7 @@ namespace addressbook_testing
     public class ContactTestBase : AuthTestBase
     {
         [TearDown]
-        public void CompareCantactsUI_DB()
+        public void CompareCantactsUI_DB() // ДЗ 16 
         {
             if (CONTACTS_PERFOM_LONG_UI_CHECKS)
             {

@@ -41,7 +41,7 @@ namespace addressbook_testing
         }
 
         [Test]
-        public void ContactRemovalTestDb() 
+        public void ContactRemovalTestDb() // ДЗ 16 
         {
             //Предусловия
             app.Contacts.ContactCreationCondition(); //Вызов метода проверки, есть ли хотя бы один контакт. ДЗ8

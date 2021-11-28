@@ -131,7 +131,7 @@ namespace addressbook_testing
         }
 
         [Test, TestCaseSource("ContactDataFromCsvFile")]
-        public void ContactCreationTestDb(ContactData entryData)
+        public void ContactCreationTestDb(ContactData entryData) // ДЗ 16 
         {
             List<ContactData> oldContacts = ContactData.GetAllContacts();
 

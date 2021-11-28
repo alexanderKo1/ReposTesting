@@ -44,7 +44,7 @@ namespace addressbook_testing
             }
         }
         [Test]
-        public void GroupModificationTestDb() //GroupData.GetAll
+        public void GroupModificationTestDb() // ДЗ 16 
         {
             //Предусловия
             app.Groups.GroupCreationCondition();  //Вызов метода проверки, есть ли хотя бы одна группа. ДЗ8

@@ -12,7 +12,7 @@ namespace addressbook_testing
         [Test]
         public void TestRemovingContactFromGroup() //ДЗ 17
         {
-            GroupData group = GroupData.GetAll()[0];
+            GroupData group = GroupData.GetAll()[1];
             List<ContactData> oldList = group.GettingContacts(); //Получить список контактов в группе
 
             app.Contacts.ContactMonitor(oldList);

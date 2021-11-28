@@ -50,7 +50,7 @@ namespace addressbook_testing
         }
 
         [Test]
-        public void ContactModificationTestDb()
+        public void ContactModificationTestDb() // ДЗ 16 
         {
             //Предусловия
             app.Contacts.ContactCreationCondition();
