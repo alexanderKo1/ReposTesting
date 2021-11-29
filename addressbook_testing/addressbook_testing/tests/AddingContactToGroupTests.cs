@@ -25,10 +25,10 @@ namespace addressbook_testing
 
             contact = app.Groups.AddingContactToGroupCondition(temporaryContact); //Проверка: Во всех ли группах содержится этот контакт
             contact = app.Groups.IsInGroupAlready(contact, group); //Проверка: Есть ли в этой группе такой же контакт, который добавляется
-
+            
             // Действия
 
-            List<ContactData> oldList = group.GettingContacts();
+            List <ContactData> oldList = group.GettingContacts();
 
             app.Contacts.AddContactToGroup(contact, group);
 

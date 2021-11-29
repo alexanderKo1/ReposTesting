@@ -47,13 +47,72 @@ namespace addressbook_testing
             return contact;
         }
 
+        internal ContactData CompleteGroupChecking(ContactData contact, GroupData group)
+        {
+            List<ContactData> allContacts = ContactData.GetAllContacts();
+            List<GroupData> allGroups = GroupData.GetAll();
+            List<ContactData> contactsInGroup = group.GettingContacts();
+            ContactData availableContact = contact;
+            GroupData availableGroup;
+
+            bool currentGroup = true;
+            bool otherGroup = false;
+
+            for (int c = 0; c < contactsInGroup.Count; c++) //
+            {
+                if (contact.Id == contactsInGroup[c].Id)
+                {
+                    currentGroup = false;
+                } 
+            }
+
+            if (!currentGroup)
+            {
+                for (int g = 0; g < allGroups.Count; g++)
+                {
+                    List<ContactData> contactsInTheGroup = allGroups[g].GettingContacts();
+
+                    for (int c = 0; c < contactsInTheGroup.Count; c++) //
+                    {
+                        if (contact.Id == contactsInTheGroup[c].Id)
+                        {
+                            otherGroup = false;
+                        }
+                    }
+                    otherGroup = true;
+
+                    if (otherGroup)
+                    {
+                        availableGroup = allGroups[g];
+
+                        List<ContactData> oldList = ContactData.GetAllContacts();
+                        manager.Contacts.Create(new ContactData(manager.Contacts.RandomData(), manager.Contacts.RandomData()));
+                        List<ContactData> newList = ContactData.GetAllContacts();
+
+                        // 2
+                        return ContactData.GetAllContacts().Except(oldList).First();
+                    }
+                }
+            }
+
+            // 1
+            if (currentGroup)
+            {
+                return contact;
+            }
+
+            // 3
+            return AddingContactToGroupCondition(contact);
+
+        }
+
         internal ContactData AddingContactToGroupCondition(ContactData contact)
         {
             List<ContactData> allContacts = ContactData.GetAllContacts();
             List<GroupData> allGroups = GroupData.GetAll();
             System.Console.Out.WriteLine("*** Всего групп: " + allGroups.Count + "; Всего контактов: " + allContacts.Count);
 
-            ContactData awailableContact = contact;
+            ContactData availableContact = contact;
             int similarities = 0; 
 
             for (int g = 0; g < allGroups.Count; g++)
@@ -88,12 +147,12 @@ namespace addressbook_testing
             else if (similarities != allGroups.Count)
             {
                 System.Console.Out.WriteLine("Можно использовать этот контакт для теста");
-                return awailableContact;
+                return availableContact;
             }
             else
             {
                 System.Console.Out.WriteLine("Можно использовать этот контакт для теста");
-                return awailableContact;
+                return availableContact;
             }
         }
 
