@@ -29,55 +29,56 @@ namespace addressbook_testing
             }
         }
 
-        internal void IsInGroupAlready(ContactData contact, GroupData group)
+        internal ContactData IsInGroupAlready(ContactData contact, GroupData group)
         {
             foreach (ContactData c in (group.GettingContacts()))
             {
                 if (c.Id == contact.Id)
                 {
                     System.Console.Out.WriteLine("Проверка выполнена: Этот контакт уже создан в этой группе");
+
+                    List<ContactData> oldList = ContactData.GetAllContacts();
+                    manager.Contacts.Create(new ContactData(manager.Contacts.RandomData(), manager.Contacts.RandomData()));
+                    List<ContactData> newList = ContactData.GetAllContacts();
+
+                    return ContactData.GetAllContacts().Except(oldList).First();
                 }
             }
-
-
+            return contact;
         }
 
         internal ContactData AddingContactToGroupCondition(ContactData contact)
         {
             List<ContactData> allContacts = ContactData.GetAllContacts();
             List<GroupData> allGroups = GroupData.GetAll();
-
-            int similarities = 0; 
-
-            //bool isEverywhere = false;
+            System.Console.Out.WriteLine("*** Всего групп: " + allGroups.Count + "; Всего контактов: " + allContacts.Count);
 
             ContactData awailableContact = contact;
+            int similarities = 0; 
 
-            List<ContactData> contactsInTheGroup;
-
-            foreach (GroupData g in allGroups)
+            for (int g = 0; g < allGroups.Count; g++)
             {
-                contactsInTheGroup = g.GettingContacts();
+                List<ContactData> contactsInTheGroup = allGroups[g].GettingContacts();
 
-                for (int i = 0; i == contactsInTheGroup.Count; i++)
+                for (int c = 0; c < contactsInTheGroup.Count; c++) //
                 {
-                    for (int b = 0; b == allContacts.Count; b++)
+                    if (contact.Id == contactsInTheGroup[c].Id)
                     {
-                        if (allContacts[b].Id == contactsInTheGroup[i].Id)
-                        {
-                            similarities++;
-                        }
+                        similarities++;
+                        System.Console.Out.WriteLine("CHECK");
                     }
                 }
-
-                contactsInTheGroup.Clear();
+                //contactsInTheGroup.Clear();
             }
+
+            System.Console.Out.WriteLine("Этот контакт встречается в группах: " + similarities);
+            System.Console.Out.WriteLine("Всего групп: " + allGroups.Count);
 
             if (similarities == allGroups.Count)
             {
-                //return awailableContact;
                 List<ContactData> oldList = ContactData.GetAllContacts();
-                manager.Contacts.Create(new ContactData("TestA", "TestB"));
+                manager.Contacts.Create(new ContactData(manager.Contacts.RandomData(), manager.Contacts.RandomData()));
+
                 List<ContactData> newList = ContactData.GetAllContacts();
 
                 System.Console.Out.WriteLine("Есть контакт во всех группах");

@@ -74,7 +74,12 @@ namespace addressbook_testing
             new WebDriverWait(driver, TimeSpan.FromSeconds(10))
                 .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
         }
-
+        public string RandomData()
+        {
+            Random random = new Random();
+            int value = random.Next(1, 100);
+            return "Test data " + Convert.ToString(value);
+        }
         private void CommitAddingContactToGroup()
         {
             driver.FindElement(By.Name("add")).Click();

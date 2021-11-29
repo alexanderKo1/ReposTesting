@@ -13,29 +13,34 @@ namespace addressbook_testing
         public void TestAddingContactToGroup()
         {
             // Подготовка
-            app.Contacts.ContactCreationConditionFromDb();
+            app.Contacts.ContactCreationConditionFromDb(); //Проверка, создан ли хотя бы один контакт
 
             int GroupsCount = GroupData.GetAll().Count;
-            System.Console.Out.WriteLine(GroupsCount);
-            app.Groups.GroupsCountCondition(GroupsCount);
+            app.Groups.GroupsCountCondition(GroupsCount); // Проверка, создана ли хотя бы одна группа
 
-            ContactData contactС = ContactData.GetAllContacts()[0];
-            GroupData group = GroupData.GetAll()[0];
-            System.Console.Out.WriteLine("Название группы: " + group.Name);
+            ContactData contact;
 
-            ContactData contact = app.Groups.AddingContactToGroupCondition(contactС); //Проверка
-            app.Groups.IsInGroupAlready(contact, group);
-          
-            //******
-            
+            ContactData temporaryContact = ContactData.GetAllContacts()[0]; // Выбираем контакт для добавления
+            GroupData group = GroupData.GetAll()[0]; // Выбираем группу для добавления
+
+            contact = app.Groups.AddingContactToGroupCondition(temporaryContact); //Проверка: Во всех ли группах содержится этот контакт
+            contact = app.Groups.IsInGroupAlready(contact, group); //Проверка: Есть ли в этой группе такой же контакт, который добавляется
+
+            // Действия
+
             List<ContactData> oldList = group.GettingContacts();
 
             app.Contacts.AddContactToGroup(contact, group);
 
-            //Действия
             List<ContactData> newList = group.GettingContacts();
+
             oldList.Add(contact);
+            oldList.Sort();
             newList.Sort();
+
+            // Проверка
+            app.Contacts.ContactMonitor(oldList);
+            app.Contacts.ContactMonitor(newList);
 
             Assert.AreEqual(oldList, newList);
         }
