@@ -12,12 +12,21 @@ namespace addressbook_testing
         [Test]
         public void TestRemovingContactFromGroup() //ДЗ 17
         {
+
+            // Подготовка
+            app.Contacts.ContactCreationConditionFromDb();
+
+            int GroupsCount = GroupData.GetAll().Count;
+            System.Console.Out.WriteLine(GroupsCount);
+            app.Groups.GroupsCountCondition(GroupsCount);
+
             GroupData group = GroupData.GetAll()[0];
             System.Console.Out.WriteLine("Название группы: " + group.Name);
 
             List<ContactData> conditionCounting = group.GettingContacts();
             app.Contacts.RemovingCondition(conditionCounting, group);
 
+            //Действие
             List<ContactData> oldList = group.GettingContacts(); //Получить список контактов в группе
 
             app.Contacts.ContactMonitor(oldList);
@@ -30,6 +39,7 @@ namespace addressbook_testing
             oldList.RemoveAt(0); //удалить контакт из старого списка
             app.Contacts.ContactMonitor(oldList);
 
+            //Проверка
             Assert.AreEqual(oldList, newList); //сравнить старые и новые контакты в группе 
         }
     }

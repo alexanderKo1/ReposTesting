@@ -277,6 +277,19 @@ namespace addressbook_testing
                 Create(new ContactData("TestA", "TestB"));
             }
         }
+        public void ContactCreationConditionFromDb() //Метод проверки, есть ли хотя бы один контакт. ДЗ8 
+        {
+            if (!IsCreatedDb())
+            {
+                Create(new ContactData("TestA", "TestB"));
+            }
+        }
+
+        private bool IsCreatedDb()
+        {
+            return ContactData.GetAllContacts().Count != 0;
+        }
+
         public void ContactEquality(List<ContactData> oldContacts, List<ContactData> newContacts) //Проверка совпадений FirstName и LastName. ДЗ 9
         {
             for (int i = 0; i < oldContacts.Count; i++)

@@ -14,6 +14,21 @@ namespace addressbook_testing
     {
 
         public GroupHelper(ApplicationManager manager) : base(manager) { }
+
+        internal void GroupsCountCondition(int groupsCount)
+        {
+            if (groupsCount == 0)
+            {
+                manager.Groups.Create(new GroupData("Test")
+                {
+                    Header = "H1",
+                    Footer = "H2"
+
+                });
+                System.Console.Out.WriteLine("Новая группа 'Test' создана ");
+            }
+        }
+
         //GroupRemovalTests
         public GroupHelper Create(GroupData group)
         {

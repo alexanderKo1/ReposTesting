@@ -12,7 +12,20 @@ namespace addressbook_testing
         [Test]
         public void TestAddingContactToGroup()
         {
+            // Подготовка
+            app.Contacts.ContactCreationConditionFromDb();
+
+            int GroupsCount = GroupData.GetAll().Count;
+            System.Console.Out.WriteLine(GroupsCount);
+            app.Groups.GroupsCountCondition(GroupsCount);
+
             GroupData group = GroupData.GetAll()[0];
+            System.Console.Out.WriteLine("Название группы: " + group.Name);
+
+            List<ContactData> conditionCounting = group.GettingContacts();
+            app.Contacts.RemovingCondition(conditionCounting, group);
+
+            //GroupData group = GroupData.GetAll()[0]; //
             List<ContactData> oldList = group.GettingContacts();
             ContactData contact = ContactData.GetAllContacts().Except(oldList).First();
 
