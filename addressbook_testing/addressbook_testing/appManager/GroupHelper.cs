@@ -29,6 +29,73 @@ namespace addressbook_testing
             }
         }
 
+        internal void IsInGroupAlready(ContactData contact, GroupData group)
+        {
+            foreach (ContactData c in (group.GettingContacts()))
+            {
+                if (c.Id == contact.Id)
+                {
+                    System.Console.Out.WriteLine("Проверка выполнена: Этот контакт уже создан в этой группе");
+                }
+            }
+
+
+        }
+
+        internal ContactData AddingContactToGroupCondition(ContactData contact)
+        {
+            List<ContactData> allContacts = ContactData.GetAllContacts();
+            List<GroupData> allGroups = GroupData.GetAll();
+
+            int similarities = 0; 
+
+            //bool isEverywhere = false;
+
+            ContactData awailableContact = contact;
+
+            List<ContactData> contactsInTheGroup;
+
+            foreach (GroupData g in allGroups)
+            {
+                contactsInTheGroup = g.GettingContacts();
+
+                for (int i = 0; i == contactsInTheGroup.Count; i++)
+                {
+                    for (int b = 0; b == allContacts.Count; b++)
+                    {
+                        if (allContacts[b].Id == contactsInTheGroup[i].Id)
+                        {
+                            similarities++;
+                        }
+                    }
+                }
+
+                contactsInTheGroup.Clear();
+            }
+
+            if (similarities == allGroups.Count)
+            {
+                //return awailableContact;
+                List<ContactData> oldList = ContactData.GetAllContacts();
+                manager.Contacts.Create(new ContactData("TestA", "TestB"));
+                List<ContactData> newList = ContactData.GetAllContacts();
+
+                System.Console.Out.WriteLine("Есть контакт во всех группах");
+
+                return ContactData.GetAllContacts().Except(oldList).First();                
+            }
+            else if (similarities != allGroups.Count)
+            {
+                System.Console.Out.WriteLine("Можно использовать этот контакт для теста");
+                return awailableContact;
+            }
+            else
+            {
+                System.Console.Out.WriteLine("Можно использовать этот контакт для теста");
+                return awailableContact;
+            }
+        }
+
         //GroupRemovalTests
         public GroupHelper Create(GroupData group)
         {

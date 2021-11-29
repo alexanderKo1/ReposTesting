@@ -19,15 +19,16 @@ namespace addressbook_testing
             System.Console.Out.WriteLine(GroupsCount);
             app.Groups.GroupsCountCondition(GroupsCount);
 
+            ContactData contactС = ContactData.GetAllContacts()[0];
             GroupData group = GroupData.GetAll()[0];
             System.Console.Out.WriteLine("Название группы: " + group.Name);
 
-            List<ContactData> conditionCounting = group.GettingContacts();
-            app.Contacts.RemovingCondition(conditionCounting, group);
-
-            //GroupData group = GroupData.GetAll()[0]; //
+            ContactData contact = app.Groups.AddingContactToGroupCondition(contactС); //Проверка
+            app.Groups.IsInGroupAlready(contact, group);
+          
+            //******
+            
             List<ContactData> oldList = group.GettingContacts();
-            ContactData contact = ContactData.GetAllContacts().Except(oldList).First();
 
             app.Contacts.AddContactToGroup(contact, group);
 

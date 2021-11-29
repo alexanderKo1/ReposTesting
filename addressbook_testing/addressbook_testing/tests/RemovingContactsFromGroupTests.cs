@@ -12,7 +12,6 @@ namespace addressbook_testing
         [Test]
         public void TestRemovingContactFromGroup() //ДЗ 17
         {
-
             // Подготовка
             app.Contacts.ContactCreationConditionFromDb();
 

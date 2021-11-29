@@ -277,7 +277,7 @@ namespace addressbook_testing
                 Create(new ContactData("TestA", "TestB"));
             }
         }
-        public void ContactCreationConditionFromDb() //Метод проверки, есть ли хотя бы один контакт. ДЗ8 
+        public void ContactCreationConditionFromDb() 
         {
             if (!IsCreatedDb())
             {
