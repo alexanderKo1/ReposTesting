@@ -29,6 +29,102 @@ namespace addressbook_testing
             }
         }
 
+        public List<object> GetAvailableContact()
+        {
+            
+            List<object> contactAndGroup = new List<object>();
+
+            List<ContactData> allContacts = ContactData.GetAllContacts();
+            List<GroupData> allGroups = GroupData.GetAll();
+
+            ContactData currentContact;
+            GroupData currentGroup;
+            ContactData newContact;
+
+            List<ContactData> contactsInGroup;
+            ContactData pContact; // = allContacts[0]; 
+
+            List<object> newParams = new List<object>();
+
+            int sim = 0;
+            int check = 0;
+
+            //
+            for (int c = 0; c < allContacts.Count; c++)
+            {
+                System.Console.Out.Write("Проверяется контакт: " + allContacts[c]);
+                for (int g = 0; g < allGroups.Count; g++)
+                {
+                    check = g;
+
+                    System.Console.Out.Write("Группа: " + allGroups[g]);
+
+                    contactsInGroup = allGroups[g].GettingContacts();
+
+                    for (int cg = 0; cg < contactsInGroup.Count; cg++)
+                    {
+                        System.Console.Out.Write("Контакт из группы: " + contactsInGroup[cg]);
+                        if (allContacts[c].Id == contactsInGroup[cg].Id)
+                        {
+                            sim++;
+                            System.Console.Out.Write("CHECK" + sim + " " + allContacts[c].Id + " & " + contactsInGroup[cg].Id);
+
+                        }
+                    }
+                    //System.Console.Out.Write("CHECK" + similarities + " " + allContacts[c].Id + " & " + contactsInGroup[cg].Id);
+                    //contactsInGroup.Clear();
+
+                    if (sim == check)
+                    {
+                        //
+                        currentContact = allContacts[c];
+                        currentGroup = allGroups[check];
+
+                        newParams.Add(currentContact);
+                        newParams.Add(currentGroup);
+
+                        System.Console.Out.Write("!!! Контакт: " + currentContact.SecondName + "Добавлен в группу: " + currentGroup.Name);
+
+                        return newParams;
+                    }
+                }
+
+                sim = 0;
+
+                System.Console.Out.Write("**************");
+            }
+            //
+            if (sim == allGroups.Count - 1)
+            {
+                List<ContactData> oldList = ContactData.GetAllContacts();
+                manager.Contacts.Create(new ContactData(manager.Contacts.RandomData(), manager.Contacts.RandomData()));
+
+                List<ContactData> newList = ContactData.GetAllContacts();
+
+                System.Console.Out.WriteLine("Есть контакт во всех группах");
+
+                newContact = ContactData.GetAllContacts().Except(oldList).First();
+                newParams.Add(newContact);
+                newParams.Add(allGroups[0]);
+
+                return newParams;
+            }
+
+            //
+            List<ContactData> oldListIn = ContactData.GetAllContacts();
+            manager.Contacts.Create(new ContactData(manager.Contacts.RandomData(), manager.Contacts.RandomData()));
+
+            List<ContactData> newListIn = ContactData.GetAllContacts();
+
+            System.Console.Out.WriteLine(" (!!!) Есть контакт во всех группах");
+
+            newContact = ContactData.GetAllContacts().Except(oldListIn).First();
+            newParams.Add(newContact);
+            newParams.Add(allGroups[0]);
+
+            return newParams;
+        }
+
         internal ContactData IsInGroupAlready(ContactData contact, GroupData group)
         {
             foreach (ContactData c in (group.GettingContacts()))
