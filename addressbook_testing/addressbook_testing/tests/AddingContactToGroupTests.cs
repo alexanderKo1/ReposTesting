@@ -10,7 +10,7 @@ namespace addressbook_testing
     public class AddingContactToGroupTests : AuthTestBase
     {
         [Test]
-        public void TestAddingContactToGroup() //ДЗ 17
+        public void TestAddingContactToGroup() //ДЗ 17 
         {
             // Подготовка
             app.Contacts.ContactCreationConditionFromDb(); //Проверка, создан ли хотя бы один контакт
