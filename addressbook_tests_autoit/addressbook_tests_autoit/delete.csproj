@@ -1,9 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net45</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <AssemblyName>l</AssemblyName>
+
+    <RootNamespace>l</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
