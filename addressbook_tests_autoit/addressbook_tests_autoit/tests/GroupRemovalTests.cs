@@ -9,6 +9,8 @@ namespace addressbook_tests_autoit
         [Test]
         public void TestGroupRemoving() // ДЗ 18
         {
+            System.Console.Out.Write(app.Groups.GetGroupList().Count);
+
             app.Groups.GroupRemovingCondition();
 
             int indexer = 0;
