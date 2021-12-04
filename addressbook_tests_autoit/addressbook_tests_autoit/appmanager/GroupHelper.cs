@@ -49,7 +49,7 @@ namespace addressbook_tests_autoit
             aux.WinWaitActive(GROUPWINTITLE, "", 5);
             
             //3. Выбор второго чек-бокса
-            //aux.ControlClick(DELETEGROUPWINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d51");
+            aux.ControlClick(DELETEGROUPWINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d51");
 
             //4. Нажатие кнопки ОК
             aux.ControlClick(DELETEGROUPWINTITLE, "", "WindowsForms10.BUTTON.app.0.2c908d53");
