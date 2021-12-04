@@ -7,7 +7,7 @@ namespace addressbook_tests_autoit
     public class GroupRemovalTests : TestBase
     {
         [Test]
-        public void TestGroupRemoving() // ДЗ 18
+        public void TestGroupRemoving() // ДЗ 18 
         {
             System.Console.Out.Write(app.Groups.GetGroupList().Count);
 
