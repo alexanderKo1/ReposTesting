@@ -1,34 +1,36 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
 
-/*
 namespace addressbook_tests_autoit
 {
-[TestFixture]
-public class GroupRemovalTests : TestBase
-{
+    [TestFixture]
+    public class GroupRemovalTests : TestBase
+    {
+        [Test]
+        public void TestGroupRemoving()
+        {
+            app.Groups.GroupRemovingCondition();
 
-   [Test]
-   public void TestGroupRemoving()
-   {
-       List<GroupData> oldGroups = app.Groups.GetGroupList();
+            int indexer = 0;
 
+            List<GroupData> checkGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-       GroupData newGroup = new GroupData()
-       {
-           Name = "test"
-       };
+            app.Groups.GroupRemoving(indexer);
 
-       app.Groups.Add(newGroup);
+            List<GroupData> newGroups = app.Groups.GetGroupList();
 
-       List<GroupData> newGroups = app.Groups.GetGroupList();
-       oldGroups.Add(newGroup);
-       oldGroups.Sort();
-       newGroups.Sort();
+            oldGroups.RemoveAt(indexer);
 
-       Assert.AreEqual(oldGroups, newGroups);
+            oldGroups.Sort();
+            newGroups.Sort();
 
-   }
+            System.Console.WriteLine((checkGroups.Count - 1) + " and " + app.Groups.GetGroupList().Count);
+            Assert.AreEqual(checkGroups.Count - 1, app.Groups.GetGroupList().Count);
+
+            Assert.AreEqual(oldGroups, newGroups);
+            app.Groups.GroupMonitor(oldGroups);
+            app.Groups.GroupMonitor(newGroups);
+        }
+    }
 }
-}
-   */
