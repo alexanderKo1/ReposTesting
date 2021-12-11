@@ -35,7 +35,7 @@ namespace mantis_tests
             driver.FindElement(By.Name("email")).SendKeys(account.Email);
         }
 
-        private void OpenMainPage()
+        public void OpenMainPage()
         {
             manager.Driver.Url = "http://localhost/mantisbt-2.25.2/login_page.php";
         }

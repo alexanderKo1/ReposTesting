@@ -32,7 +32,7 @@ namespace mantis_tests
         }
         public void Logout()
         {
-            //manager.Navigator.GoToHomePage();
+            manager.Registration.OpenMainPage();
             if (IsLoggedIn())
             {
                 driver.FindElement(By.CssSelector("span.user - info")).Click();

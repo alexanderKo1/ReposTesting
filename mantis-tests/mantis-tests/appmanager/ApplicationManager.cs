@@ -17,6 +17,8 @@ namespace mantis_tests
         protected string baseURL;
 
         protected LoginHelper loginHelper;
+        protected ManagementMenuHelper mngmMenuHelper;
+        protected ProjectHelper projects;
 
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
@@ -26,7 +28,9 @@ namespace mantis_tests
             baseURL = "http://localhost";
 
             loginHelper = new LoginHelper(this);
+            mngmMenuHelper = new ManagementMenuHelper(this);
             Registration = new RegistrationHelper(this);
+            projects = new ProjectHelper(this);
 
             /*
             Ftp = new FTPHelper(this);
@@ -71,7 +75,20 @@ namespace mantis_tests
                 return loginHelper;
             }
         }
-
+        public ManagementMenuHelper MngmMenuHelper
+        {
+            get
+            {
+                return mngmMenuHelper;
+            }
+        }
+        public ProjectHelper Projects
+        {
+            get
+            {
+                return projects;
+            }
+        }
         public RegistrationHelper Registration { get; set; }
         public FTPHelper Ftp { get; set; }
     }
