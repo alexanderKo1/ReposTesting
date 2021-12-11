@@ -14,6 +14,45 @@ namespace mantis_tests
     {
         public ProjectHelper(ApplicationManager manager) : base(manager) { }
 
+        internal void ProjectRemovalCondition()
+        {
+            if (GetProjectsList().Count == 0)
+            {
+                manager.Projects.Create(new ProjectData(RandomData()));
+            }
+                
+        }
+        public ProjectHelper Remove(int indexer)
+        {
+            manager.MngmMenuHelper.GoToControlPage();
+            manager.MngmMenuHelper.ProjectControl();
+
+            SelectProjectForRemoving(indexer);
+            RemoveProject();
+            SubmitRemoving();
+
+            manager.MngmMenuHelper.GoToControlPage();
+            return this;
+        }
+
+        private void SubmitRemoving()
+        {
+            driver.FindElement(By.CssSelector("input[type='submit']")).Click();
+            projectCache = null;
+        }
+
+        private void RemoveProject()
+        {
+            driver.FindElement(By.CssSelector("form[id='project-delete-form'] input.btn")).Click();
+        }
+
+        private void SelectProjectForRemoving(int indexer)
+        {
+            By.CssSelector("div.widget-box:nth-child(2) tbody tr:nth-child( " + indexer + " )");
+                driver.FindElement(By.CssSelector("td:nth-child(1) a")).Click();
+        }
+
+        //
         internal ProjectData ProjectCreationCondition(string name)
         {
             List<ProjectData> projects = GetProjectsList();
