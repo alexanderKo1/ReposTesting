@@ -8,11 +8,19 @@ namespace mantis_tests
 {
     public class ProjectData : IEquatable<ProjectData>, IComparable<ProjectData>
     {
+        public ProjectData()
+        { }
         public ProjectData(string name)
         {
             this.Name = name;
         }
+        public ProjectData(string name, string id)
+        {
+            this.Name = name;
+            this.Id = id;
+        }
         public string Name { get; set; }
+        public string Id { get; set; }
 
         //
         public bool Equals(ProjectData other)

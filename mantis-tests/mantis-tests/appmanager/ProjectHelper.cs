@@ -90,7 +90,9 @@ namespace mantis_tests
                 foreach (IWebElement element in elements)
                 {
                     projectCache.Add(new ProjectData(element.FindElement(By.XPath("td[1]")).Text)
-                    { });
+                    {
+                        Id = (element.FindElement(By.TagName("a")).GetAttribute("href")).Replace("http://localhost/mantisbt-2.25.2/manage_proj_edit_page.php?project_id=", "")
+                    });
                 }
             }
             return new List<ProjectData>(projectCache);
@@ -146,7 +148,7 @@ namespace mantis_tests
             int nn = 0;
             for (int i = 0; i < projects.Count; i++)
             {
-                System.Console.Out.Write("#: " + i + " | " + "Название проекта: " + projects[i].Name);
+                System.Console.Out.Write("#: " + i + " | " + "Id: "+ projects[i].Id +" | " + "Название проекта: " + projects[i].Name);
             }
             System.Console.Out.Write("FINISHED" + "\n");
         }

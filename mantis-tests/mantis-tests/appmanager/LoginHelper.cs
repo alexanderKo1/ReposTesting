@@ -35,14 +35,14 @@ namespace mantis_tests
             manager.Registration.OpenMainPage();
             if (IsLoggedIn())
             {
-                driver.FindElement(By.CssSelector("span.user - info")).Click();
+                driver.FindElement(By.CssSelector("span.user-info")).Click();
                 driver.FindElement(By.CssSelector("ul.user-menu i.fa-sign-out")).Click();
             }
 
         }
         public bool IsLoggedIn()
         {
-            return IsElementPresent(By.CssSelector("span.user - info"));
+            return IsElementPresent(By.CssSelector("span.user-info"));
         }
         public bool IsLoggedIn(AccountData account)
         {
@@ -52,7 +52,7 @@ namespace mantis_tests
 
         public string GetLoggetUserName()
         {
-            string text = driver.FindElement(By.Name("span.user - info")).Text;
+            string text = driver.FindElement(By.CssSelector("a[data-toggle='dropdown'] span.user-info")).Text;
             return text;
         }
     }

@@ -16,6 +16,8 @@ namespace mantis_tests
             app.Projects.ProjectRemovalCondition();
             List<ProjectData> oldProjects = app.Projects.GetProjectsList();
 
+            ProjectData toBeRemoved = oldProjects[0];
+
             //Действие
             app.Projects.Remove(0);
            
@@ -26,6 +28,11 @@ namespace mantis_tests
             oldProjects.RemoveAt(0);
 
             Assert.AreEqual(oldProjects, newProjects);
+
+            foreach (ProjectData project in newProjects)
+            {
+                Assert.AreNotEqual(project.Id, toBeRemoved.Id);
+            }
         }
     }
 }

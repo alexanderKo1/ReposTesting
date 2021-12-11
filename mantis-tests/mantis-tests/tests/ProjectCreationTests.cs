@@ -12,7 +12,7 @@ namespace mantis_tests
         [Test]
         public void ProjectCreationTest()
         {
-            ProjectData project = app.Projects.ProjectCreationCondition("yyy");
+            ProjectData project = app.Projects.ProjectCreationCondition("ТЕСТтест");
 
             List<ProjectData> oldProjects = app.Projects.GetProjectsList();
 
@@ -27,8 +27,6 @@ namespace mantis_tests
             newProjects.Sort();
 
             Assert.AreEqual(oldProjects, newProjects);
-            app.Projects.ProjectMonitor(oldProjects);
-            app.Projects.ProjectMonitor(newProjects);
         }
     }
 }
