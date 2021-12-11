@@ -19,6 +19,7 @@ namespace mantis_tests
             }
         }
 
+        /*
         [Test]
         public void TestAccountRegistration()
         {
@@ -37,5 +38,6 @@ namespace mantis_tests
         {
             app.Ftp.RestoreBackupFile("/config/config_inc.php");
         }
+        */
     }
 }

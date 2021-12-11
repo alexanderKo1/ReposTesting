@@ -16,14 +16,21 @@ namespace mantis_tests
         protected IWebDriver driver;
         protected string baseURL;
 
+        protected LoginHelper loginHelper;
+
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
         private ApplicationManager()
         {
             driver = new FirefoxDriver();
             baseURL = "http://localhost";
+
+            loginHelper = new LoginHelper(this);
             Registration = new RegistrationHelper(this);
+
+            /*
             Ftp = new FTPHelper(this);
+            */
         }
 
         ~ApplicationManager()
@@ -49,11 +56,19 @@ namespace mantis_tests
             return app.Value;
         }
         //Свойства, чтобы доступиться до помощников
-        public IWebDriver Driver 
+        public IWebDriver Driver
         {
-            get 
+            get
             {
                 return driver;
+            }
+        }
+
+        public LoginHelper Auth
+        {
+            get
+            {
+                return loginHelper;
             }
         }
 
