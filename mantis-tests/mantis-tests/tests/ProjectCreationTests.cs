@@ -12,7 +12,7 @@ namespace mantis_tests
         [Test]
         public void ProjectCreationTest()
         {
-            ProjectData project = new ProjectData("f");
+            ProjectData project = app.Projects.ProjectCreationCondition("yyy");
 
             List<ProjectData> oldProjects = app.Projects.GetProjectsList();
 

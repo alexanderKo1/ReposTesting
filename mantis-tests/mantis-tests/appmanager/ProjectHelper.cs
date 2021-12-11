@@ -14,6 +14,27 @@ namespace mantis_tests
     {
         public ProjectHelper(ApplicationManager manager) : base(manager) { }
 
+        internal ProjectData ProjectCreationCondition(string name)
+        {
+            List<ProjectData> projects = GetProjectsList();
+
+            foreach (ProjectData projectForUse in projects)
+            {
+                if (projectForUse.Name == name)
+                {
+                    return new ProjectData(RandomData());
+                }
+            }
+            return new ProjectData(name);
+        }
+
+        public string RandomData()
+        {
+            Random random = new Random();
+            int value = random.Next(1, 100);
+            return "Test data " + Convert.ToString(value);
+        }
+
         private List<ProjectData> projectCache = null;
 
         public List<ProjectData> GetProjectsList()
