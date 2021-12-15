@@ -32,6 +32,7 @@ namespace mantis_tests
             foreach (ProjectData project in newProjects)
             {
                 Assert.AreNotEqual(project.Id, toBeRemoved.Id);
+                Assert.AreNotEqual(project.Name, toBeRemoved.Name);
             }
         }
     }

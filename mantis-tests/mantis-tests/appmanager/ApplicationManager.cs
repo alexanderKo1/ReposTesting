@@ -32,9 +32,7 @@ namespace mantis_tests
             Registration = new RegistrationHelper(this);
             projects = new ProjectHelper(this);
 
-            /*
             Ftp = new FTPHelper(this);
-            */
         }
 
         ~ApplicationManager()

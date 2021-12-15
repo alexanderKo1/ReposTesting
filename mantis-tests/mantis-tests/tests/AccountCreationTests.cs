@@ -12,10 +12,12 @@ namespace mantis_tests
         [TestFixtureSetUp]
         public void SetUpConfig()
         {
-            app.Ftp.BackupFile("/config/config_inc.php");
-            using (Stream localFile = File.Open("/config/config_inc.php", FileMode.Open))
+            //C:\xampp\htdocs\mantisbt-2.25.2\config
+            //"/config_inc.php"
+            app.Ftp.BackupFile("/config_inc.php");
+            using (Stream localFile = File.Open("config_inc.php", FileMode.Open))
             {
-                app.Ftp.Upload("/config/config_inc.php", localFile);
+                app.Ftp.Upload("/config_inc.php", localFile);
             }
         }
 
@@ -25,9 +27,9 @@ namespace mantis_tests
         {
             AccountData account = new AccountData()
             {
-                Name = "testuser",
+                Name = "testuser4",
                 Password = "password",
-                Email = "testuser@localhost.localdomain"
+                Email = "testuser4@localhost.localdomain"
             };
 
             app.Registration.Register(account);
@@ -36,7 +38,7 @@ namespace mantis_tests
         [TestFixtureTearDown]
         public void RestoreConfig()
         {
-            app.Ftp.RestoreBackupFile("/config/config_inc.php");
+            app.Ftp.RestoreBackupFile("/config_inc.php");
         }
         */
     }

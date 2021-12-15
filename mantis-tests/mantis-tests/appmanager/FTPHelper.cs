@@ -15,7 +15,7 @@ namespace mantis_tests
         {
             client = new FtpClient();
             client.Host = "localhost";
-            client.Credentials = new System.Net.NetworkCredential("mantis", "mantis");
+            client.Credentials = new System.Net.NetworkCredential("mantisT", "mantisT");
             client.Connect();
         }
 
