@@ -26,6 +26,8 @@ namespace mantis_tests
             oldProjects.Sort();
             newProjects.Sort();
 
+            app.Projects.NameChecking(oldProjects);
+
             Assert.AreEqual(oldProjects, newProjects);
         }
     }

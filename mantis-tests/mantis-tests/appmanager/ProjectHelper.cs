@@ -35,6 +35,20 @@ namespace mantis_tests
             return this;
         }
 
+        public void NameChecking(List<ProjectData> oldProjects)
+        {
+            List<ProjectData> projectsList = manager.Projects.GetProjectsList();
+
+            oldProjects.Sort();
+            projectsList.Sort();
+
+            for (int i = 0; i < projectsList.Count; i++)
+            {
+                Assert.AreEqual(oldProjects[i].Name, projectsList[i].Name);
+                System.Console.Out.WriteLine(oldProjects[i].Name + " and " + projectsList[i].Name);
+            }
+        }
+
         private void SubmitRemoving()
         {
             driver.FindElement(By.CssSelector("input[type='submit']")).Click();

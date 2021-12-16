@@ -27,12 +27,13 @@ namespace mantis_tests
 
             oldProjects.RemoveAt(0);
 
+            app.Projects.NameChecking(oldProjects);
+
             Assert.AreEqual(oldProjects, newProjects);
 
             foreach (ProjectData project in newProjects)
             {
                 Assert.AreNotEqual(project.Id, toBeRemoved.Id);
-                Assert.AreNotEqual(project.Name, toBeRemoved.Name);
             }
         }
     }
