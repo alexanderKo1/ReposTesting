@@ -1,10 +1,11 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 
 namespace mantis_tests.tests
 {
     [TestFixture]
-    public class UnitTest1 : TestBase
+    public class Checking : TestBase
     {
         /*
         [Test]
@@ -22,5 +23,17 @@ namespace mantis_tests.tests
             Assert.IsFalse(app.James.Verify(account));
         }
         */
+        [Test]
+        public void GetAllProjectsAPI()
+        {
+            AccountData account = new AccountData("administrator", "root");
+            List<ProjectData> prjs = app.API.GetProjectsListUsingAPI(account);
+
+            foreach (ProjectData pd in prjs)
+            {
+                System.Console.Out.WriteLine("Checking_/_PrjMonitor_process: " + pd.Name + " // " + pd.Id );
+            }
+        }
+
     }
 }

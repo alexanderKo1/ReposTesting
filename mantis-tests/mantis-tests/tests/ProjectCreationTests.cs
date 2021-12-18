@@ -30,5 +30,27 @@ namespace mantis_tests
 
             Assert.AreEqual(oldProjects, newProjects);
         }
+
+        [Test]
+        public void ProjectCreationTestAPI()
+        {
+            ProjectData project = app.Projects.ProjectCreationCondition("1");
+
+            List<ProjectData> oldProjects = app.Projects.GetProjectsListAPI();
+
+            app.Projects.Create(project);
+
+            Assert.AreEqual(oldProjects.Count + 1, app.Projects.GetProjectsListAPI().Count);
+
+            List<ProjectData> newProjects = app.Projects.GetProjectsListAPI();
+
+            oldProjects.Add(project);
+            oldProjects.Sort();
+            newProjects.Sort();
+
+            app.Projects.NameChecking(oldProjects);
+
+            Assert.AreEqual(oldProjects, newProjects);
+        }
     }
 }

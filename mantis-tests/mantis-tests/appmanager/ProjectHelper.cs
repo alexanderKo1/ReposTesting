@@ -111,7 +111,25 @@ namespace mantis_tests
             }
             return new List<ProjectData>(projectCache);
         }
+        public List<ProjectData> GetProjectsListAPI()
+        {
+            if (projectCache == null)
+            {
+                AccountData account = new AccountData("administrator", "root");
+                List<ProjectData> prjs = manager.API.GetProjectsListUsingAPI(account);
 
+                projectCache = new List<ProjectData>();
+
+                foreach (ProjectData project in prjs)
+                {
+                    projectCache.Add(new ProjectData(project.Name)
+                    {
+                        Id = project.Id
+                    }); ;
+                }
+            }
+            return new List<ProjectData>(projectCache);
+        }
         public ProjectHelper Create(ProjectData project)
         {
             manager.MngmMenuHelper.GoToControlPage();
