@@ -25,7 +25,7 @@ namespace mantis_tests
         private ApplicationManager()
         {
             driver = new FirefoxDriver();
-            baseURL = "http://localhost";
+            baseURL = "http://localhost/mantisbt-2.25.2";
 
             loginHelper = new LoginHelper(this);
             mngmMenuHelper = new ManagementMenuHelper(this);
@@ -33,6 +33,10 @@ namespace mantis_tests
             projects = new ProjectHelper(this);
 
             Ftp = new FTPHelper(this);
+            James = new JamesHelper(this);
+            Mail = new MailHelper(this);
+
+            Admin = new AdminHelper(this, baseURL);
         }
 
         ~ApplicationManager()
@@ -52,7 +56,7 @@ namespace mantis_tests
             if (! app.IsValueCreated) //Если объект не создан, то создать. Если создан - то исп. существующий. (Singleton) 
             {
                 ApplicationManager newInstance = new ApplicationManager();
-                newInstance.driver.Url = "http://localhost/mantisbt-2.25.2/login_page.php";
+                newInstance.driver.Url = newInstance.baseURL + "/login_page.php";
                 app.Value = newInstance;
             }
             return app.Value;
@@ -89,5 +93,8 @@ namespace mantis_tests
         }
         public RegistrationHelper Registration { get; set; }
         public FTPHelper Ftp { get; set; }
+        public JamesHelper James { get; set; }
+        public MailHelper Mail { get; set; }
+        public AdminHelper Admin { get; set; }
     }
 }
