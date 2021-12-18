@@ -22,7 +22,7 @@ namespace mantis_tests.tests
             app.James.Delete(account);
             Assert.IsFalse(app.James.Verify(account));
         }
-        */
+
         [Test]
         public void GetAllProjectsAPI()
         {
@@ -43,5 +43,6 @@ namespace mantis_tests.tests
 
             app.API.CreateNewProjectUsingAPI(account, projectForCreationByAPI);
         }
+        */
     }
 }

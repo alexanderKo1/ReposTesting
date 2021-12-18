@@ -34,7 +34,7 @@ namespace mantis_tests
         [Test]
         public void ProjectCreationTestAPI()
         {
-            ProjectData project = app.Projects.ProjectCreationCondition("1");
+            ProjectData project = app.Projects.ProjectCreationCondition("324");
 
             List<ProjectData> oldProjects = app.Projects.GetProjectsListAPI();
 
