@@ -43,5 +43,14 @@ namespace mantis_tests
             }
             return allProjects;
         }
+        public void CreateNewProjectUsingAPI(AccountData account, ProjectData project)
+        {
+            Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
+
+            Mantis.ProjectData projectIn = new Mantis.ProjectData();
+            projectIn.name = project.Name;
+
+            client.mc_project_add(account.Name, account.Password, projectIn);
+        }
     }
 }

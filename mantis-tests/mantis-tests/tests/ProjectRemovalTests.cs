@@ -40,8 +40,12 @@ namespace mantis_tests
         public void ProjectRemovalTestAPI()
         {
             //Предусловия
-            app.Projects.ProjectRemovalCondition();
+            app.Projects.ProjectRemovalConditionAPI();
+
+            System.Threading.Thread.Sleep(2000);
+
             List<ProjectData> oldProjects = app.Projects.GetProjectsListAPI();
+            app.Projects.ProjectMonitor(oldProjects);
 
             ProjectData toBeRemoved = oldProjects[0];
 

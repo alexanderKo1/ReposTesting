@@ -22,6 +22,42 @@ namespace mantis_tests
             }
                 
         }
+        internal void ProjectRemovalConditionAPI()
+        {
+            List<ProjectData> prjcs = manager.Projects.GetProjectsListAPI();
+
+            if (prjcs.Count == 0)
+            {
+                AccountData account = new AccountData("administrator", "root");
+                ProjectData projectForCreationByAPI = new ProjectData("TestProjectAPI" + RandomData());
+
+                System.Console.Out.WriteLine("Создан проект: " + projectForCreationByAPI.Name);
+
+                manager.API.CreateNewProjectUsingAPI(account, projectForCreationByAPI);
+                projectCache = null;
+            }
+
+        }
+
+        internal string GetAvailableId()
+        {
+            List<ProjectData> projects = GetProjectsListAPI();
+
+            if (projects.Count == 0)
+            {
+                AccountData account = new AccountData("administrator", "root");
+                ProjectData projectForCreationByAPI = new ProjectData("TestProjectAPI" + RandomData());
+
+                System.Console.Out.WriteLine("Создан проект: " + projectForCreationByAPI.Name);
+
+                manager.API.CreateNewProjectUsingAPI(account, projectForCreationByAPI);
+                projectCache = null;
+
+                return GetProjectsListAPI()[0].Id;
+            }
+            return projects[0].Id;
+        }
+
         public ProjectHelper Remove(int indexer)
         {
             manager.MngmMenuHelper.GoToControlPage();
@@ -134,6 +170,7 @@ namespace mantis_tests
         {
             manager.MngmMenuHelper.GoToControlPage();
             manager.MngmMenuHelper.ProjectControl();
+
             InitNewProjectCreation();
             FillTheFields(project);
             Submit();

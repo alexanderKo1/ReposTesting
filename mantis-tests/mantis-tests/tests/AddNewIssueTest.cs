@@ -15,8 +15,10 @@ namespace mantis_tests
             AccountData account = new AccountData()
             { Name = "administrator", Password = "root" };
 
+            string availableId = app.Projects.GetAvailableId(); // Получить первый доступный идентификатор
+
             ProjectData project = new ProjectData()
-            { Id = "58"}; //Получить первый доступный идентификатор
+            { Id = availableId };
 
             IssueData issue = new IssueData()
             {

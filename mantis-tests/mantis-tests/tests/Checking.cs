@@ -35,5 +35,13 @@ namespace mantis_tests.tests
             }
         }
 
+        [Test]
+        public void CreateProjectByAPI()
+        {
+            AccountData account = new AccountData("administrator", "root");
+            ProjectData projectForCreationByAPI = new ProjectData("TestProjectAPI");
+
+            app.API.CreateNewProjectUsingAPI(account, projectForCreationByAPI);
+        }
     }
 }
